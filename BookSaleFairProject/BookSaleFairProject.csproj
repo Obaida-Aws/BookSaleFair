@@ -67,9 +67,13 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="ForgetPassword\EnterEmail.aspx" />
+    <Content Include="ForgetPassword\EnterVerificationCode.aspx" />
+    <Content Include="ForgetPassword\ResetPassword.aspx" />
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HomePage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Site.master" />
@@ -92,8 +96,36 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgetPassword\EnterEmail.aspx.cs">
+      <DependentUpon>EnterEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword\EnterEmail.aspx.designer.cs">
+      <DependentUpon>EnterEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgetPassword\EnterVerificationCode.aspx.cs">
+      <DependentUpon>EnterVerificationCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword\EnterVerificationCode.aspx.designer.cs">
+      <DependentUpon>EnterVerificationCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgetPassword\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BookSaleFairProject
+namespace BookSaleFairProject.ForgetPassword
 {
 
 
-    public partial class Login
+    public partial class EnterEmail
     {
 
         /// <summary>
@@ -42,31 +42,13 @@ namespace BookSaleFairProject
         protected global::DevExpress.Web.ASPxPanel ASPxPanel2;
 
         /// <summary>
-        /// txtUsername control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox txtUsername;
-
-        /// <summary>
-        /// txtPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox txtPassword;
-
-        /// <summary>
-        /// lnkForgotPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkForgotPassword;
+        protected global::DevExpress.Web.ASPxTextBox txtEmail;
 
         /// <summary>
         /// btnLogin control.
@@ -76,14 +58,5 @@ namespace BookSaleFairProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton btnLogin;
-
-        /// <summary>
-        /// lnkSignUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkSignUp;
     }
 }
