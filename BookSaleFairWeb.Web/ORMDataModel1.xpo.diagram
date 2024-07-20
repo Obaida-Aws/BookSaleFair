@@ -198,14 +198,14 @@
         </associationConnectorReferencesSourceCollectionField>
       </sourceCollectionField>
     </simpleAssociationConnector>
-    <commentConnector Id="54569b3e-f527-4ae0-83ab-c39bf54e9f0c" edgePoints="[(7 : 14.375); (6.2375015 : 14.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <commentConnector Id="54569b3e-f527-4ae0-83ab-c39bf54e9f0c" edgePoints="[(7 : 14.375); (6.2375015 : 14.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <commentReferencesSubjectsMoniker Id="2dde2604-76d5-4e0d-9378-cade4f060cd1" />
       <nodes>
         <commentShapeMoniker Id="1fab9c20-220b-49c7-9ad9-8c8ea1cfa7aa" />
         <xpObjectShapeMoniker Id="93709b35-c866-4067-a4e9-adc98bdd3d2c" />
       </nodes>
     </commentConnector>
-    <commentConnector Id="dc2a6307-3565-480b-b519-b06a7707348f" edgePoints="[(9.25 : 10.375); (8.487501 : 10.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <commentConnector Id="dc2a6307-3565-480b-b519-b06a7707348f" edgePoints="[(9.25 : 10.375); (8.487501 : 10.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <commentReferencesSubjectsMoniker Id="b82cf402-d7bc-4e89-ad42-9d66709f9a65" />
       <nodes>
         <commentShapeMoniker Id="b475fe1b-3261-448d-a11b-d4b7cfefe723" />
@@ -219,7 +219,7 @@
         <xpObjectShapeMoniker Id="1084d9e8-6fdb-4f94-8a80-930b164c034a" />
       </nodes>
     </commentConnector>
-    <commentConnector Id="1f94952f-fbe4-4a1c-b27b-67011e55eb28" edgePoints="[(4.75 : 5.25); (4.53335645297769 : 4.75401688870739 : JumpStart); (4.46664354702231 : 4.60128455435488 : JumpEnd); (3.9875015 : 3.50433813476562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <commentConnector Id="1f94952f-fbe4-4a1c-b27b-67011e55eb28" edgePoints="[(4.75 : 5.25); (3.9875015 : 3.50433813476562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <commentReferencesSubjectsMoniker Id="94359627-ca44-4c18-895f-84bb14da9a3d" />
       <nodes>
         <commentShapeMoniker Id="a3cf79f5-3b77-4a20-b73e-7bce304339fd" />
@@ -233,28 +233,28 @@
         <xpObjectShapeMoniker Id="8c8fcd86-f1ff-4c48-bf81-870b31e1f428" />
       </nodes>
     </commentConnector>
-    <commentConnector Id="40f4d10f-15f7-4a46-a84f-714a03363ac6" edgePoints="[(15.25 : 13.125); (14.5125 : 13.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <commentConnector Id="40f4d10f-15f7-4a46-a84f-714a03363ac6" edgePoints="[(15.25 : 13.125); (14.5125 : 13.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <commentReferencesSubjectsMoniker Id="3965ccc9-56e6-4e87-851b-a93e35512ffb" />
       <nodes>
         <commentShapeMoniker Id="f5713f11-c70e-4492-b687-410e0064f145" />
         <xpObjectShapeMoniker Id="53a5d8b2-cf1e-4eae-8a48-547dfdf8bf74" />
       </nodes>
     </commentConnector>
-    <commentConnector Id="2f38afc1-1fb1-47c9-b6fe-61885df6dcad" edgePoints="[(11.5 : 2.5); (10.7375 : 2.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <commentConnector Id="2f38afc1-1fb1-47c9-b6fe-61885df6dcad" edgePoints="[(11.5 : 2.5); (10.7375 : 2.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <commentReferencesSubjectsMoniker Id="facfce34-aff7-4bd8-a9cd-eda6a9fc1bb0" />
       <nodes>
         <commentShapeMoniker Id="27a6836c-8cda-466c-9cbd-2ed618094167" />
         <xpObjectShapeMoniker Id="791f8095-097d-4c04-8622-1a68452d9cc5" />
       </nodes>
     </commentConnector>
-    <storedProcedureToResultConnector Id="574d43be-597e-4f0f-8c88-7810c3ba2b76" edgePoints="[(3.875 : 11.3969962565104); (3.58333333333333 : 11.3969962565104 : JumpStart); (3.41666666666667 : 11.3969962565104 : JumpEnd); (3.125 : 11.3969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <storedProcedureToResultConnector Id="574d43be-597e-4f0f-8c88-7810c3ba2b76" edgePoints="[(3.875 : 11.3969962565104); (3.125 : 11.3969962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <storedProcedureReferencesGeneralXpObjectMoniker Id="c373e19f-21a9-4a03-ad11-31bd36c7ce69" />
       <nodes>
         <storedProcedureShapeMoniker Id="d5d28c47-0b35-4a4c-b51d-f08f7c18d992" />
         <resultXpObjectShapeMoniker Id="6254c905-831a-42e0-ae1c-ec488c01c3a7" />
       </nodes>
     </storedProcedureToResultConnector>
-    <storedProcedureToResultConnector Id="5b0274c6-3eab-4538-b5e9-d42dd4d4ffa1" edgePoints="[(3.875 : 8.77199625651042); (3.58333333333333 : 8.77199625651042 : JumpStart); (3.41666666666667 : 8.77199625651042 : JumpEnd); (3.125 : 8.77199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <storedProcedureToResultConnector Id="5b0274c6-3eab-4538-b5e9-d42dd4d4ffa1" edgePoints="[(3.875 : 8.77199625651042); (3.125 : 8.77199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <storedProcedureReferencesGeneralXpObjectMoniker Id="55ffba4a-b0fd-490e-894c-f6ead33afd53" />
       <nodes>
         <storedProcedureShapeMoniker Id="50309a34-946d-4ef3-922a-b4c135be5145" />

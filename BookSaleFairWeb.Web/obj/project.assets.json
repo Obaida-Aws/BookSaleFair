@@ -197,25 +197,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Obaida\\.nuget\\packages\\": {},
-    "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages": {}
+    "C:\\Users\\dell\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+      "projectUniqueName": "C:\\Users\\dell\\source\\repos\\BookSaleFair\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
       "projectName": "BookSaleFairWeb.Web",
-      "projectPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
-      "packagesPath": "C:\\Users\\Obaida\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\obj\\",
+      "projectPath": "C:\\Users\\dell\\source\\repos\\BookSaleFair\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dell\\source\\repos\\BookSaleFair\\BookSaleFairWeb.Web\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
-        "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages"
+        "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Obaida\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -229,11 +232,11 @@
       "frameworks": {
         "net462": {
           "projectReferences": {
-            "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj": {
-              "projectPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj"
+            "C:\\Users\\dell\\source\\repos\\BookSaleFair\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj": {
+              "projectPath": "C:\\Users\\dell\\source\\repos\\BookSaleFair\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj"
             },
-            "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj": {
-              "projectPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj"
+            "C:\\Users\\dell\\source\\repos\\BookSaleFair\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj": {
+              "projectPath": "C:\\Users\\dell\\source\\repos\\BookSaleFair\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj"
             }
           }
         }

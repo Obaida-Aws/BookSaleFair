@@ -4,11 +4,43 @@ using System;
 namespace BookSaleFairProject.DataBase
 {
     [Persistent("Users")]
-    public class User : XPObject
+    public class User : XPLiteObject
     {
         public User() : base() { }
 
         public User(Session session) : base(session) { }
+
+        [Persistent("id")]
+        [Key(true)]
+        private int id; 
+        public int Id
+        {
+            get { return id; }
+        }
+
+        private string firstName;
+        [Persistent("firstName")]
+        public string FirstName
+        {
+            get { return firstName; }
+            set { SetPropertyValue(nameof(FirstName), ref firstName, value); }
+        }
+
+        private string lastName;
+        [Persistent("lastName")]
+        public string LastName
+        {
+            get { return lastName; }
+            set { SetPropertyValue(nameof(LastName), ref lastName, value); }
+        }
+
+        private string type;
+        [Persistent("type")]
+        public string Type
+        {
+            get { return type; }
+            set { SetPropertyValue(nameof(Type), ref type, value); }
+        }
 
         private string username;
         [Persistent("userName")]
@@ -26,13 +58,20 @@ namespace BookSaleFairProject.DataBase
             set { SetPropertyValue(nameof(Password), ref password, value); }
         }
 
-
-        private string type;
-        [Persistent("type")]
-        public string Type
+        private string email;
+        [Persistent("email")]
+        public string Email
         {
-            get { return type; }
-            set { SetPropertyValue(nameof(Type), ref type, value); }
+            get { return email; }
+            set { SetPropertyValue(nameof(Email), ref email, value); }
+        }
+
+        private string gender;
+        [Persistent("gender")]
+        public string Gender
+        {
+            get { return gender; }
+            set { SetPropertyValue(nameof(Gender), ref gender, value); }
         }
 
         public override void AfterConstruction()

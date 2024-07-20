@@ -67,19 +67,27 @@ namespace BookSaleFairProject
                     }
 
                     // Perform operations using the session
+                    string firstName = txtFirstName.Text;
+                    string lastName = txtLastName.Text;
+                    string email = txtEmail.Text;
                     string username = txtUsername.Text.Trim();
                     string password = txtPassword.Text.Trim();
                     string type = "user";
+                    string gender = genders.SelectedItem?.Text;
 
                     User newUser = new User(session)
-                    {
+                    {                        
+                        FirstName = firstName,
+                        LastName = lastName,
+                        Type = type,
                         Username = username,
                         Password = password,
-                        Type = type,
+                        Email = email,
+                        Gender = gender,
                     };
 
                     session.Save(newUser);
-                    Response.Redirect("SignIn.aspx");
+                    Response.Redirect("Login.aspx");
 
                 }
             }
