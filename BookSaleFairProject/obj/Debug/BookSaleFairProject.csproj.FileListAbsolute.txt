@@ -26,3 +26,4 @@ C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\obj\Debug\B
 C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\obj\Debug\BookSale.05760E5A.Up2Date
 C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\obj\Debug\BookSaleFairProject.dll
 C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\obj\Debug\BookSaleFairProject.pdb
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\obj\Debug\BookSaleFairProject.dll.licenses

@@ -3,7 +3,7 @@ using System;
 
 namespace BookSaleFairProject.DataBase
 {
-    [Persistent("registration")]
+    [Persistent("Users")]
     public class User : XPObject
     {
         public User() : base() { }
@@ -11,7 +11,7 @@ namespace BookSaleFairProject.DataBase
         public User(Session session) : base(session) { }
 
         private string username;
-        [Persistent("username")]
+        [Persistent("userName")]
         public string Username
         {
             get { return username; }
