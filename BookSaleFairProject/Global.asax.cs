@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Xpo;
+using System;
 
 namespace BookSaleFairProject {
     public class Global_asax : System.Web.HttpApplication {
@@ -8,6 +9,17 @@ namespace BookSaleFairProject {
                 DevExpress.Security.Resources.DirectoryAccessRule.Allow(Server.MapPath("~/Content")),
                 DevExpress.Security.Resources.UrlAccessRule.Allow()
             );
+
+            try
+            {
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ArchivingSystemConnection"].ConnectionString;
+                XpoDefault.DataLayer = XpoDefault.GetDataLayer(connectionString, DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to initialize data layer.", ex);
+            }
         }
 
         void Application_End(object sender, EventArgs e) {
