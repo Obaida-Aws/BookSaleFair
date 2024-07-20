@@ -1,0 +1,111 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{966B50D7-A15C-4359-8D7A-B939429537E0}|BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj|c:\\users\\obaida\\source\\repos\\booksalefairproject\\booksalefairweb.web\\ormdatamodel1.xpo||{1923C09A-77B4-41C5-9C55-B8BC33E1A6D3}|",
+      "RelativeMoniker": "D:0:0:{966B50D7-A15C-4359-8D7A-B939429537E0}|BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj|solutionrelative:booksalefairweb.web\\ormdatamodel1.xpo||{1923C09A-77B4-41C5-9C55-B8BC33E1A6D3}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{966B50D7-A15C-4359-8D7A-B939429537E0}|BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj|c:\\users\\obaida\\source\\repos\\booksalefairproject\\booksalefairweb.web\\ormdatamodel1code\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{966B50D7-A15C-4359-8D7A-B939429537E0}|BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj|solutionrelative:booksalefairweb.web\\ormdatamodel1code\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|BookSaleFairWeb.Module||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|BookSaleFairWeb.Web||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|BookSaleFairWeb.Module.Web||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{966B50D7-A15C-4359-8D7A-B939429537E0}|BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj|c:\\users\\obaida\\source\\repos\\booksalefairproject\\booksalefairweb.web\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68DA0668-FD1F-4706-B413-2C1C26EF9C61}|BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj|c:\\users\\obaida\\source\\repos\\booksalefairproject\\booksalefairweb.module\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 100,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Books.cs",
+              "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\ORMDataModel1Code\\Books.cs",
+              "RelativeDocumentMoniker": "BookSaleFairWeb.Web\\ORMDataModel1Code\\Books.cs",
+              "ToolTip": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\ORMDataModel1Code\\Books.cs",
+              "RelativeToolTip": "BookSaleFairWeb.Web\\ORMDataModel1Code\\Books.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T11:49:44.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ORMDataModel1.xpo",
+              "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\ORMDataModel1.xpo",
+              "RelativeDocumentMoniker": "BookSaleFairWeb.Web\\ORMDataModel1.xpo",
+              "ToolTip": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\ORMDataModel1.xpo",
+              "RelativeToolTip": "BookSaleFairWeb.Web\\ORMDataModel1.xpo",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJqSURBVDhPdVJNSFRRFD73OU0/E\u002BNoheVQYeYiF2XrKbLGTURQ4SbFAlcSBgUWEYK4rShlCAIhojZFrhIZyxwIF8FoibtARspotFLHQXR87773bt\u002B584Yx1A8\u002B3jnnnXPud869gooQjT0TkcpwRdx11W6lFLmKiL8KxkJmhfpvHvMjT\u002BbTAfz0eaa49DB56vD\u002BsnjzmYqA32d44TzeT2Rp\u002BNcimyVgsYEQgjPF5QefT1eF98Zbzh4M7NpmkA\u002B6CvyA4sHxJcrldN16xRrcwKioDA/U1B4KfP0rKDmraHxO0cRvRZN/FA2MLeoxVtcszt\u002B8gbTdoAvTcoksh8jGzA7s2nJB1yIhsJRa68OF/P\u002BgG1iWTdJRKFYkUWw5QjdDL0rP3aGpVAP9SF\u002Bhu311yx3P6kZ0pQdeoliTti5gBx89O3avb2FmOknd7T2wJbmuRV2x\u002B\u002Be4sAC9RBMKbBen4kiJ01mFCdtBTEpF86tfaCrzklLZ1/D5iCLyI5jcQIHcgEfgL/aBgISxLNNouKrJ/nqwarUGBW/fjPLDgEyIh3QXI\u002By4UGXtCR5d6I3FD8DFGPyyaChfWgQ/jgBY6jEEloHlbLe0daJK5/AViqbWe\u002Bxr5exvuFcP4lbvyQRS6lmO46hPsduTDde7a4YLMRexV92pqJe/ASXtT06o\u002BZWkSi\u002BPqBuPjvOpO5u7qtV0pl99W3ihrnYe4ZifZWwGQ2KTM9kEXuZjMnmraMqx70ujNDbbR6apb2PLEXyNHdVDjuNGLRSZOTvx8Xn6YqRp3zvDEFFeaDC0PTH49Of5LXcA8g3phwayBBtkxetiJP8BQng4q1OFyewAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-07-20T11:48:59.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookSaleFairWeb.Web",
+              "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+              "RelativeDocumentMoniker": "BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+              "ToolTip": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+              "RelativeToolTip": "BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-20T11:48:45.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BookSaleFairWeb.Module.Web",
+              "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj",
+              "RelativeDocumentMoniker": "BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj",
+              "ToolTip": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj",
+              "RelativeToolTip": "BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-20T11:48:37.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookSaleFairWeb.Module",
+              "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj",
+              "RelativeDocumentMoniker": "BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj",
+              "ToolTip": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj",
+              "RelativeToolTip": "BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-20T11:48:29.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

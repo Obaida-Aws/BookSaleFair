@@ -1,0 +1,272 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {
+      "DevExpress.ExpressApp.CodeAnalysis/24.1.3": {
+        "type": "package"
+      },
+      "BookSaleFairWeb.Module/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        }
+      },
+      "BookSaleFairWeb.Module.Web/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "BookSaleFairWeb.Module": "1.0.0",
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win": {
+      "DevExpress.ExpressApp.CodeAnalysis/24.1.3": {
+        "type": "package"
+      },
+      "BookSaleFairWeb.Module/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        }
+      },
+      "BookSaleFairWeb.Module.Web/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "BookSaleFairWeb.Module": "1.0.0",
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win-arm64": {
+      "DevExpress.ExpressApp.CodeAnalysis/24.1.3": {
+        "type": "package"
+      },
+      "BookSaleFairWeb.Module/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        }
+      },
+      "BookSaleFairWeb.Module.Web/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "BookSaleFairWeb.Module": "1.0.0",
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win-x64": {
+      "DevExpress.ExpressApp.CodeAnalysis/24.1.3": {
+        "type": "package"
+      },
+      "BookSaleFairWeb.Module/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        }
+      },
+      "BookSaleFairWeb.Module.Web/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "BookSaleFairWeb.Module": "1.0.0",
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win-x86": {
+      "DevExpress.ExpressApp.CodeAnalysis/24.1.3": {
+        "type": "package"
+      },
+      "BookSaleFairWeb.Module/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.dll": {}
+        }
+      },
+      "BookSaleFairWeb.Module.Web/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "BookSaleFairWeb.Module": "1.0.0",
+          "DevExpress.ExpressApp.CodeAnalysis": "24.1.3"
+        },
+        "compile": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookSaleFairWeb.Module.Web.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DevExpress.ExpressApp.CodeAnalysis/24.1.3": {
+      "sha512": "J37CgeiPTF7R7bfIUeETI5zA7mg1RqrzvY8JOkio+uhpt67FEvAzABMcFnST+nAZsM8SBGYDHTC9M62R7H1rcQ==",
+      "type": "package",
+      "path": "devexpress.expressapp.codeanalysis/24.1.3",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/DevExpress.ExpressApp.CodeAnalysis.v24.1.dll",
+        "devexpress.expressapp.codeanalysis.24.1.3.nupkg.sha512",
+        "devexpress.expressapp.codeanalysis.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "BookSaleFairWeb.Module/1.0.0": {
+      "type": "project",
+      "path": "../BookSaleFairWeb.Module/BookSaleFairWeb.Module.csproj",
+      "msbuildProject": "../BookSaleFairWeb.Module/BookSaleFairWeb.Module.csproj"
+    },
+    "BookSaleFairWeb.Module.Web/1.0.0": {
+      "type": "project",
+      "path": "../BookSaleFairWeb.Module.Web/BookSaleFairWeb.Module.Web.csproj",
+      "msbuildProject": "../BookSaleFairWeb.Module.Web/BookSaleFairWeb.Module.Web.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": [
+      "BookSaleFairWeb.Module >= 1.0.0",
+      "BookSaleFairWeb.Module.Web >= 1.0.0",
+      "DevExpress.ExpressApp.CodeAnalysis >= 24.1.3"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Obaida\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+      "projectName": "BookSaleFairWeb.Web",
+      "projectPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\BookSaleFairWeb.Web.csproj",
+      "packagesPath": "C:\\Users\\Obaida\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Web\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Obaida\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\DevExpress 24.1\\Components\\System\\Components\\Packages": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "projectReferences": {
+            "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj": {
+              "projectPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module.Web\\BookSaleFairWeb.Module.Web.csproj"
+            },
+            "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj": {
+              "projectPath": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairWeb.Module\\BookSaleFairWeb.Module.csproj"
+            }
+          }
+        }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "dependencies": {
+          "DevExpress.ExpressApp.CodeAnalysis": {
+            "target": "Package",
+            "version": "[24.1.3, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-arm64": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}
