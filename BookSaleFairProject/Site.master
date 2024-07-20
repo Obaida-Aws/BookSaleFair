@@ -10,18 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="content-wrapper">
-            <div class="header">
-                <h1>DevExpress ASP.NET project</h1>
-                <dx:ASPxMenu ID="HeaderMenu" runat="server" ItemAutoWidth="False" Width="100%">
-                    <items>
-                        <dx:MenuItem Text="Home"></dx:MenuItem>
-                        <dx:MenuItem Text="About"></dx:MenuItem>
-                        <dx:MenuItem Text="Contact"></dx:MenuItem>
-                    </items>
-                    <border borderwidth="0px" />
-                    <paddings padding="0px" />
-                </dx:ASPxMenu>
-            </div>
+     
 
             <div class="content">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
