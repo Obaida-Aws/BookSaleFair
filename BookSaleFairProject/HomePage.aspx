@@ -135,7 +135,7 @@
                         <dx:MenuItem Text="Home" NavigateUrl="#home" />
                         <dx:MenuItem Text="Cart" NavigateUrl="#chart" />
                         <dx:MenuItem Text="Services" NavigateUrl="#services" />
-                        <dx:MenuItem Text="Logout" NavigateUrl="#logout" />
+                        <dx:MenuItem Text="Logout" NavigateUrl="Login.aspx" />
                     </Items>
                 </dx:ASPxMenu>
             </dx:PanelContent>
@@ -165,12 +165,14 @@
                                     <dx:PanelContent>
                                         <dx:ASPxButton ID="btnSearch" runat="server" Text="Search" Style="margin-top: 20px;" Height="35px" CssClass="button-style" OnClick="btnSearch_Click" />
                                         <dx:ASPxButton ID="btnAdd" runat="server" Text="Add Book" Style="margin-top: 20px;" Height="35px" CssClass="button-style" OnClick="ASPxButton1_Click" />
+                                     
                                     </dx:PanelContent>
                                 </PanelCollection>
                             </dx:ASPxPanel>
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>
+
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>
@@ -187,22 +189,16 @@
 
                                         <dx:CardViewTextColumn FieldName="ID" Caption="ID" VisibleIndex="1">
                                         </dx:CardViewTextColumn>
-                                        <dx:CardViewTextColumn FieldName="Title" Caption="Name" VisibleIndex="2" />
+                                        <dx:CardViewTextColumn FieldName="Title" Caption="Title" VisibleIndex="2" />
                                         <dx:CardViewTextColumn FieldName="Description" Caption="Description" VisibleIndex="3" />
                                         <dx:CardViewTextColumn FieldName="Price" Caption="Price" VisibleIndex="4" />
                                         <dx:CardViewColumn Caption="Actions" VisibleIndex="5">
                                             <DataItemTemplate>
                                                 <div class="action-buttons">
-                                                    <dx:ASPxButton ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" />
+                                                    <dx:ASPxButton ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" CommandArgument='<%# Container.VisibleIndex %>' />
                                                     <dx:ASPxButton ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" CommandArgument='<%# Container.VisibleIndex %>' />
                                                 </div>
-                                                <dx:ASPxPopupControl ID="ASPxPopupControl5" runat="server" PopupElementID="ASPxButton2" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter">
-                                                    <ContentCollection>
-                                                        <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
-                                                            <label>the popUp content</label>
-                                                        </dx:PopupControlContentControl>
-                                                    </ContentCollection>
-                                                </dx:ASPxPopupControl>
+                               
                                             </DataItemTemplate>
                                         </dx:CardViewColumn>
                                     </Columns>

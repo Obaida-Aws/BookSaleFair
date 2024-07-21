@@ -17,19 +17,34 @@ namespace BookSaleFairProject
             BindBooksGrid();
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        { 
-        }
-
         protected void ASPxButton1_Click(object sender, EventArgs e)
         {
+            Response.Redirect("AddNewBook.aspx");
         }
+
+
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = ASPxTextBox1.Text.Trim();
+
+            // Apply filter directly to the ASPxCardView
+            ASPxCardView1.FilterExpression = $"Contains([Title], '{searchTerm}')";
+
+            // Rebind data to apply the filter
+            ASPxCardView1.DataBind();
+        }
+
+
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
 
-
+            // Redirect to EditBookData.aspx with the index as a query parameter
+            Response.Redirect($"EditBookData.aspx?index={index}");
         }
+
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
