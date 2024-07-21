@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HomePage.aspx" />
+    <Content Include="images\Book.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Site.master" />
@@ -88,6 +89,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBase\Book.cs" />
     <Compile Include="DataBase\User.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
