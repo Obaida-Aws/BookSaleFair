@@ -15,6 +15,33 @@ namespace BookSaleFairProject
     {
 
         /// <summary>
+        /// navbarPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPanel navbarPanel;
+
+        /// <summary>
+        /// ASPxLabel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabel2;
+
+        /// <summary>
+        /// ASPxMenu1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxMenu ASPxMenu1;
+
+        /// <summary>
         /// ASPxPanel1 control.
         /// </summary>
         /// <remarks>
@@ -24,12 +51,12 @@ namespace BookSaleFairProject
         protected global::DevExpress.Web.ASPxPanel ASPxPanel1;
 
         /// <summary>
-        /// ASPxLabel1 control.
+        /// ASPxMenu2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabel1;
+        protected global::DevExpress.Web.ASPxMenu ASPxMenu2;
     }
 }
