@@ -69,6 +69,24 @@ namespace BookSaleFairProject
         protected global::DevExpress.Web.ASPxTextBox txtEmail;
 
         /// <summary>
+        /// ASPxPanelGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPanel ASPxPanelGender;
+
+        /// <summary>
+        /// lblGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel lblGender;
+
+        /// <summary>
         /// genders control.
         /// </summary>
         /// <remarks>

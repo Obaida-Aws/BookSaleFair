@@ -1,9 +1,13 @@
 ﻿using BookSaleFairProject.DataBase;
+using DevExpress.Data.Filtering;
 using DevExpress.Web;
 using DevExpress.Xpo;
+using DevExpress.Xpo.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -19,46 +23,57 @@ namespace BookSaleFairProject.ForgetPassword
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("EnterVerificationCode.aspx");
-            // Ensure page validation is performed
-            /*  if (!ASPxEdit.ValidateEditorsInContainer(this))
-              {
-                  // If validation fails, do not proceed
-                  return;
-              }
+            string email = txtEmail.Text.Trim();
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                var user = uow.FindObject<User>(CriteriaOperator.Parse("Email = ?", email));
+                if (user != null)
+                {
+                    // Generate a unique verification code
+                    string verificationCode = new Random().Next(100000, 999999).ToString();
+                    user.PasswordResetToken = verificationCode;
+                    user.PasswordResetTokenExpiry = DateTime.Now.AddMinutes(2); // Code valid for 10 minutes
+                    uow.CommitChanges();
 
-              string username = txtEmail.Text;
+                    // Send email with verification code
+                    SendVerificationCodeEmail(user.Email, verificationCode);
+                    Response.Redirect("EnterVerificationCode.aspx");
+                }
+                else
+                {
+                    Response.Write("Email not found.");
+                }
+            }
+        }
 
 
-              Session session = XpoDefault.Session ?? new Session();
+        private void SendVerificationCodeEmail(string email, string code)
+        {
+            //string resetLink = Request.Url.GetLeftPart(UriPartial.Authority) + "/ResetPassword.aspx?token=" + token;
 
-              // Query for the user
-              User user = session.Query<User>().FirstOrDefault(u => u.Username == username );
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("s11923787@stu.najah.edu", "obaidaaws0594376261"),
+                    EnableSsl = true,
+                };
 
-              if (user != null)
-              {
-                  FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                     1,                      // Version
-                     user.Username,          // User data (username)
-                     DateTime.Now,           // Issue time
-                     DateTime.Now.AddMinutes(30), // Expiry time
-                     false,                  // Is persistent cookie?
-                     "your custom data"      // User data (any additional data you want to store)
-                  );
+                mail.From = new MailAddress("s11923787@stu.najah.edu");
+                mail.To.Add(email);
+                mail.Subject = "Password Reset Verification Code";
+                mail.Body = $"Your verification code is: {code}. This code is valid for 10 minutes.";
+                mail.IsBodyHtml = false;
 
-                  string encryptedTicket = FormsAuthentication.Encrypt(ticket);
-                  HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-
-                  Response.Cookies.Add(authCookie);
-
-                  Session["Username"] = user.Username;
-
-              }
-              else
-              {
-                  // Optionally, add a label or message to inform the user of invalid credentials
-                  // lblMessage.Text = "Invalid username or password.";
-              }*/
+                smtpClient.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine($"Error: {ex.Message}");
+                Response.Write($"Error: {ex.Message}");
+            }
         }
     }
 }

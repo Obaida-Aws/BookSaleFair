@@ -32,8 +32,14 @@
             background-color: #f9f9f9; 
         }
 
+        /* Add margin-left to move text boxes right */
+        .move-right {
+            margin-left: 60px; /* Adjust this value to move the text boxes further right or left */
+        }
+
         /* Forgot password link */
         .forgot-password {
+            margin-left: 160px; /* Adjust this value to move the text boxes further right or left */
             text-align: right;
             margin-top: 10px;
         }
@@ -47,16 +53,16 @@
                 <dx:ASPxPanel ID="ASPxPanel2" runat="server" CssClass="ss">
                     <PanelCollection>
                         <dx:PanelContent CssClass="center-content">
-                            <dx:ASPxTextBox ID="txtUsername" runat="server" Placeholder="Username" Width="100%" Height="35px" NullText="Enter Your Username">
+                            <dx:ASPxTextBox ID="txtUsername" runat="server" Placeholder="Username" Width="100%" Height="35px" NullText="Enter Your Username" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Username is required." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <br /><br />
-                            <dx:ASPxTextBox ID="txtPassword" runat="server" Placeholder="Password" Width="100%" Password="true" Height="35px" NullText="Enter Your Password">
+                            <dx:ASPxTextBox ID="txtPassword" runat="server" Placeholder="Password" Width="100%" Password="true" Height="35px" NullText="Enter Your Password" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Password is required." />
-                                    <RegularExpression ValidationExpression=".{5,}" ErrorText="Password must be at least 5 characters long." />
+                                    <RegularExpression ValidationExpression=".{8,}" ErrorText="Password must be at least 8 characters long." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <div class="forgot-password">

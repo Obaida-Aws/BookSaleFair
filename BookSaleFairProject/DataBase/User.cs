@@ -74,6 +74,23 @@ namespace BookSaleFairProject.DataBase
             set { SetPropertyValue(nameof(Gender), ref gender, value); }
         }
 
+
+        private string passwordResetToken;
+        [Persistent("passwordResetToken")]
+        public string PasswordResetToken
+        {
+            get { return passwordResetToken; }
+            set { SetPropertyValue(nameof(PasswordResetToken), ref passwordResetToken, value); }
+        }
+
+        private DateTime? passwordResetTokenExpiry;
+        [Persistent("passwordResetTokenExpiry")]
+        public DateTime? PasswordResetTokenExpiry
+        {
+            get { return passwordResetTokenExpiry; }
+            set { SetPropertyValue(nameof(PasswordResetTokenExpiry), ref passwordResetTokenExpiry, value); }
+        }
+
         public override void AfterConstruction()
         {
             base.AfterConstruction();

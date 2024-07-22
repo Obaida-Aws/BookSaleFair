@@ -58,7 +58,7 @@
                     </PanelCollection>
                 </dx:ASPxPanel>
                 <br /><br />
-                <dx:ASPxButton ID="btnLogin" runat="server" Text="Send" Width="200px" Style="margin-right: 20px;" OnClick="btnLogin_Click" CausesValidation="true"></dx:ASPxButton>
+                <dx:ASPxButton ID="btnLogin" runat="server" Text="Confirm" Width="200px" Style="margin-right: 20px;" OnClick="btnLogin_Click" CausesValidation="true"></dx:ASPxButton>
                
             </dx:PanelContent>
         </PanelCollection>

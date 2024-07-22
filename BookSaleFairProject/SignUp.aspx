@@ -31,6 +31,21 @@
             margin: auto; /* Center the panel horizontally */
             background-color: #f9f9f9; /* Background color */
         }
+
+        /* Add margin-left to move text boxes right */
+        .move-right {
+            margin-left: 150px; /* Adjust this value to move the text boxes further right or left */
+        }
+
+         /* Styling for inline label and combo box */
+        .gender-container {
+            display: flex;            
+            margin-left: 30px; /* Adjust this value as needed */
+        }
+
+        .gender-label {
+            margin-right: 25px; /* Adjust spacing between label and combo box */
+        }
     </style>
 
     <dx:ASPxPanel ID="ASPxPanel1" runat="server" CssClass="centered main-panel">
@@ -42,47 +57,56 @@
                 <dx:ASPxPanel ID="ASPxPanel2" runat="server" CssClass="ss">
                     <PanelCollection>
                         <dx:PanelContent CssClass="center-content">
-                            <dx:ASPxTextBox ID="txtFirstName" runat="server" Placeholder="First Name" Width="250px" Height="35px" NullText="Enter Your First Name">
+                            <dx:ASPxTextBox ID="txtFirstName" runat="server" Placeholder="First Name" Width="250px" Height="35px" NullText="Enter Your First Name" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="First Name is required." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <br />
                             <br />
-                            <dx:ASPxTextBox ID="txtLastName" runat="server" Placeholder="Last Name" Width="250px" Height="35px" NullText="Enter Your Last Name">
+                            <dx:ASPxTextBox ID="txtLastName" runat="server" Placeholder="Last Name" Width="250px" Height="35px" NullText="Enter Your Last Name" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Last Name is required." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <br />
                             <br />
-                            <dx:ASPxTextBox ID="txtEmail" runat="server" Placeholder="Email" Width="250px" Height="35px" NullText="Enter Your Email">
+                            <dx:ASPxTextBox ID="txtEmail" runat="server" Placeholder="Email" Width="250px" Height="35px" NullText="Enter Your Email" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Email is required." />
+                                    <RegularExpression ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" ErrorText="Invalid email format." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <br />
                             <br />
-                            <dx:ASPxComboBox ID="genders" runat="server" ClientInstanceName="genders" AutoPostBack="true" OnSelectedIndexChanged="cites_SelectedIndexChanged">
-                                <ClientSideEvents SelectedIndexChanged="function(s, e) { }" />
-                            </dx:ASPxComboBox>
+                            <dx:ASPxPanel ID="ASPxPanelGender" runat="server" CssClass="gender-container">
+                                <PanelCollection>
+                                    <dx:PanelContent>
+                                        <dx:ASPxLabel ID="lblGender" runat="server" Text="Gender:" CssClass="gender-label"></dx:ASPxLabel>
+                                        <dx:ASPxComboBox ID="genders" runat="server" ClientInstanceName="genders" AutoPostBack="true" OnSelectedIndexChanged="cites_SelectedIndexChanged">
+                                            <ClientSideEvents SelectedIndexChanged="function(s, e) { }" />
+                                        </dx:ASPxComboBox>
+                                    </dx:PanelContent>
+                                </PanelCollection>
+                            </dx:ASPxPanel>
                             <br />
                             <br />
-                            <dx:ASPxTextBox ID="txtUsername" runat="server" Placeholder="Username" Width="250px" Height="35px" NullText="Enter Your Username">
+                            <dx:ASPxTextBox ID="txtUsername" runat="server" Placeholder="Username" Width="250px" Height="35px" NullText="Enter Your Username" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Username is required." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <br />
                             <br />
-                            <dx:ASPxTextBox ID="txtPassword" runat="server" Placeholder="Password" Width="250px" Password="true" Height="35px" NullText="Enter Your Password">
+                            <dx:ASPxTextBox ID="txtPassword" runat="server" Placeholder="Password" Width="250px" Password="true" Height="35px" NullText="Enter Your Password" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Password is required." />
+                                    <RegularExpression ValidationExpression=".{8,}" ErrorText="Password must be at least 8 characters long." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <br />
                             <br />
-                            <dx:ASPxTextBox ID="txtPassword2" runat="server" Placeholder="Re-enter Password" Width="250px" Password="true" Height="35px" NullText="Re-enter Your Password">
+                            <dx:ASPxTextBox ID="txtPassword2" runat="server" Placeholder="Re-enter Password" Width="250px" Password="true" Height="35px" NullText="Re-enter Your Password" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Password is required." />
                                 </ValidationSettings>

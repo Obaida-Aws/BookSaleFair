@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpo;
 using System;
+using System.Web.UI;
 
 namespace BookSaleFairProject {
     public class Global_asax : System.Web.HttpApplication {
@@ -20,6 +21,20 @@ namespace BookSaleFairProject {
             {
                 throw new Exception("Failed to initialize data layer.", ex);
             }
+            RegisterJQueryScript();
+        }
+
+        private void RegisterJQueryScript()
+        {
+            ScriptManager.ScriptResourceMapping.AddDefinition(
+                "jquery",
+                new ScriptResourceDefinition
+                {
+                    Path = "~/Scripts/jquery-3.6.0.min.js",
+                    DebugPath = "~/Scripts/jquery-3.6.0.js",
+                    CdnPath = "https://code.jquery.com/jquery-3.6.0.min.js",
+                    CdnDebugPath = "https://code.jquery.com/jquery-3.6.0.js"
+                });
         }
 
         void Application_End(object sender, EventArgs e) {

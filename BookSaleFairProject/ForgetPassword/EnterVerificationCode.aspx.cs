@@ -1,6 +1,8 @@
 ﻿using BookSaleFairProject.DataBase;
+using DevExpress.Data.Filtering;
 using DevExpress.Web;
 using DevExpress.Xpo;
+using DevExpress.Xpo.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,46 +22,20 @@ namespace BookSaleFairProject.ForgetPassword
         protected void btnLogin_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("ResetPassword.aspx");
-            // Ensure page validation is performed
-            /*  if (!ASPxEdit.ValidateEditorsInContainer(this))
-              {
-                  // If validation fails, do not proceed
-                  return;
-              }
+            string enteredCode = txtCode.Text.Trim();
 
-              string username = txtCode.Text;
-
-
-              Session session = XpoDefault.Session ?? new Session();
-
-              // Query for the user
-              User user = session.Query<User>().FirstOrDefault(u => u.Username == username);
-
-              if (user != null)
-              {
-                  FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                     1,                      // Version
-                     user.Username,          // User data (username)
-                     DateTime.Now,           // Issue time
-                     DateTime.Now.AddMinutes(30), // Expiry time
-                     false,                  // Is persistent cookie?
-                     "your custom data"      // User data (any additional data you want to store)
-                  );
-
-                  string encryptedTicket = FormsAuthentication.Encrypt(ticket);
-                  HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-
-                  Response.Cookies.Add(authCookie);
-
-                  Session["Username"] = user.Username;
-
-              }
-              else
-              {
-                  // Optionally, add a label or message to inform the user of invalid credentials
-                  // lblMessage.Text = "Invalid username or password.";
-              }*/
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                var user = uow.FindObject<User>(CriteriaOperator.Parse("PasswordResetToken = ? AND PasswordResetTokenExpiry > ?", enteredCode, DateTime.Now));
+                if (user != null)
+                {
+                    Response.Redirect("ResetPassword.aspx?token=" + enteredCode);
+                }
+                else
+                {
+                    Response.Write("Invalid or expired verification code.");
+                }
+            }
         }
     }
 }

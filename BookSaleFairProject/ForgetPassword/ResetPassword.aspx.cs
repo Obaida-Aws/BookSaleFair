@@ -1,6 +1,8 @@
 ﻿using BookSaleFairProject.DataBase;
+using DevExpress.Data.Filtering;
 using DevExpress.Web;
 using DevExpress.Xpo;
+using DevExpress.Xpo.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,44 +21,33 @@ namespace BookSaleFairProject.ForgetPassword
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // Ensure page validation is performed
-            if (!ASPxEdit.ValidateEditorsInContainer(this))
+            string code = Request.QueryString["token"];
+            string newPassword = txtPassword1.Text.Trim();
+            string confirmPassword = txtPassword2.Text.Trim();
+
+            if (newPassword != confirmPassword)
             {
-                // If validation fails, do not proceed
+                Response.Write("Passwords do not match.");
                 return;
             }
 
-            string username = txtPassword1.Text;
-
-
-            Session session = XpoDefault.Session ?? new Session();
-
-            // Query for the user
-            User user = session.Query<User>().FirstOrDefault(u => u.Username == username);
-
-            if (user != null)
+            using (UnitOfWork uow = new UnitOfWork())
             {
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                   1,                      // Version
-                   user.Username,          // User data (username)
-                   DateTime.Now,           // Issue time
-                   DateTime.Now.AddMinutes(30), // Expiry time
-                   false,                  // Is persistent cookie?
-                   "your custom data"      // User data (any additional data you want to store)
-                );
+                var user = uow.FindObject<User>(CriteriaOperator.Parse("PasswordResetToken = ? AND PasswordResetTokenExpiry > ?", code, DateTime.Now));
+                if (user != null)
+                {
+                    user.Password = newPassword; // Consider hashing the password before storing it
+                    user.PasswordResetToken = null;
+                    user.PasswordResetTokenExpiry = null;
+                    uow.CommitChanges();
 
-                string encryptedTicket = FormsAuthentication.Encrypt(ticket);
-                HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    Response.Redirect("../Login.aspx");
 
-                Response.Cookies.Add(authCookie);
-
-                Session["Username"] = user.Username;
-
-            }
-            else
-            {
-                // Optionally, add a label or message to inform the user of invalid credentials
-                // lblMessage.Text = "Invalid username or password.";
+                }
+                else
+                {
+                    Response.Write("Invalid or expired verification code.");
+                }
             }
         }
     }

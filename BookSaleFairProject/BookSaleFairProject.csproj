@@ -79,6 +79,7 @@
     <Content Include="images\Book.jpg" />
     <Content Include="images\cart.png" />
     <Content Include="Login.aspx" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="SignUp.aspx" />
     <Content Include="Site.master" />
   </ItemGroup>
