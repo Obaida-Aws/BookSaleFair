@@ -178,7 +178,6 @@
                 <dx:ASPxMenu ID="ASPxMenu1" runat="server" CssClass="navbar">
                     <Items>
                         <dx:MenuItem Text="Home" NavigateUrl="#home" />
-                        <dx:MenuItem Text="Cart" NavigateUrl="#chart" />
                         <dx:MenuItem Text="Services" NavigateUrl="#services" />
                         <dx:MenuItem Text="Logout" NavigateUrl="Login.aspx" />
                     </Items>
