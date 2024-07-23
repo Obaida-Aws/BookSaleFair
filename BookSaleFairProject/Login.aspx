@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        /* General styling */
+        
         .centered {
             margin-top: 50px;
             text-align: center;
@@ -23,7 +23,7 @@
             width: 100%;
         }
 
-        /* Styling for ASPxPanel1 */
+      
         .main-panel {
             border: 1px solid #ccc; 
             padding: 20px; 
@@ -32,14 +32,14 @@
             background-color: #f9f9f9; 
         }
 
-        /* Add margin-left to move text boxes right */
+       
         .move-right {
-            margin-left: 60px; /* Adjust this value to move the text boxes further right or left */
+            margin-left: 60px; 
         }
 
-        /* Forgot password link */
+       
         .forgot-password {
-            margin-left: 160px; /* Adjust this value to move the text boxes further right or left */
+            margin-left: 160px; 
             text-align: right;
             margin-top: 10px;
         }

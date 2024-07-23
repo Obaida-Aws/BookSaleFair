@@ -65,6 +65,7 @@
     <Reference Include="DevExpress.Web.v24.1, Version=24.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddEmployee.aspx" />
     <Content Include="AddNewBook.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
@@ -93,6 +94,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEmployee.aspx.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddEmployee.aspx.designer.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddNewBook.aspx.cs">
       <DependentUpon>AddNewBook.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

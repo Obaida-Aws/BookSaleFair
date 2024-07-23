@@ -18,10 +18,10 @@ namespace BookSaleFairProject
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // Ensure page validation is performed
+            
             if (!ASPxEdit.ValidateEditorsInContainer(this))
             {
-                // If validation fails, do not proceed
+                
                 return;
             }
 
@@ -30,18 +30,18 @@ namespace BookSaleFairProject
 
             Session session = XpoDefault.Session ?? new Session();
 
-            // Query for the user
+           
             User user = session.Query<User>().FirstOrDefault(u => u.Username == username && u.Password == password);
 
             if (user != null)
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                   1,                      // Version
-                   user.Username,          // User data (username)
-                   DateTime.Now,           // Issue time
-                   DateTime.Now.AddMinutes(30), // Expiry time
-                   false,                  // Is persistent cookie?
-                   "your custom data"      // User data (any additional data you want to store)
+                   1,                      
+                   user.Username,         
+                   DateTime.Now,           
+                   DateTime.Now.AddMinutes(30),
+                   false,                  
+                   "your custom data"      
                 );
 
                 string encryptedTicket = FormsAuthentication.Encrypt(ticket);
@@ -55,8 +55,7 @@ namespace BookSaleFairProject
             }
             else
             {
-                // Optionally, add a label or message to inform the user of invalid credentials
-                // lblMessage.Text = "Invalid username or password.";
+   
             }
         }
     }
