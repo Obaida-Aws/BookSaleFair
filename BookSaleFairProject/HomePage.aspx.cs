@@ -87,6 +87,12 @@ namespace BookSaleFairProject
             Response.Redirect("AddNewBook.aspx");
         }
 
+        protected void ASPxorder1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ShowOrders.aspx");
+        }
+
+
 
 
         protected void btnSearch_Click(object sender, EventArgs e)

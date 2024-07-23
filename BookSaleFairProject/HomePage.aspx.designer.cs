@@ -69,6 +69,15 @@ namespace BookSaleFairProject
         protected global::DevExpress.Web.ASPxButton ASPxButton1;
 
         /// <summary>
+        /// ASPxButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton ASPxButton2;
+
+        /// <summary>
         /// ASPxPanel1 control.
         /// </summary>
         /// <remarks>
