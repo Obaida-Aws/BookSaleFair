@@ -2,26 +2,26 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        /* Reset default margins and paddings */
+        
         body, html {
             margin: 0;
             padding: 0;
         }
 
-        /* Full-width content */
+        
         .full-width-content {
             width: 100%;
             margin: 0;
             padding: 0;
         }
 
-        /* Navigationbar styling */
+        
         .navbar {
             background-color: #333;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px; /* Adjust padding for navbar */
+            padding: 10px 20px; 
         }
 
         .navbar .dxm-item {
@@ -53,11 +53,11 @@
 
         .main-panel {
             background-color: #f9f9f9;
-            padding: 20px 50px; /* Adjust padding for main panel */
+            padding: 20px 50px; 
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px; /* Add margin-top for separation */
+            margin-top: 20px; 
          
         }
 
@@ -105,7 +105,7 @@
 
         .button-style {
             border-radius: 25px;
-            padding: 6px 20px; /* Adjust padding for buttons */
+            padding: 6px 20px; 
             font-size: 16px;
             font-weight: bold;
             background-color: #007bff;

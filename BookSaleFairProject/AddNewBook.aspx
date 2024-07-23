@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        /* General styling */
         .centered {
             margin-top: 50px;
             text-align: center;
@@ -23,7 +22,7 @@
             width: 100%;
         }
 
-        /* Styling for ASPxPanel1 */
+
         .main-panel {
             border: 1px solid #ccc;
             padding: 20px;
@@ -32,10 +31,18 @@
             background-color: #f9f9f9;
         }
 
-        /* Forgot password link */
+
         .forgot-password {
             text-align: right;
             margin-top: 10px;
+        }
+
+        .type-container {
+            display: flex;
+            margin: 20px 60px  0 30px;
+        }
+        .type-label{
+            margin-right: 25px; 
         }
     </style>
 
@@ -79,6 +86,16 @@
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
 
+                            <dx:ASPxPanel ID="ASPxPanelGender" runat="server" CssClass="type-container">
+                                <PanelCollection>
+                                    <dx:PanelContent>
+                                        <dx:ASPxLabel ID="lblType" runat="server" Text="Type:" CssClass="type-label"></dx:ASPxLabel>
+                                        <dx:ASPxComboBox ID="types" Width="220px" runat="server" ClientInstanceName="types" AutoPostBack="true" OnSelectedIndexChanged="cites_SelectedIndexChanged">
+                                            <ClientSideEvents SelectedIndexChanged="function(s, e) { }" />
+                                        </dx:ASPxComboBox>
+                                    </dx:PanelContent>
+                                </PanelCollection>
+                            </dx:ASPxPanel>
 
                         </dx:PanelContent>
                     </PanelCollection>

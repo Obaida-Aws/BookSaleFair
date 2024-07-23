@@ -66,7 +66,7 @@ namespace BookSaleFairProject.DataBase
         [Persistent("description")] // This specifies the column name in the database
         public string Description
         {
-            get { return author; }
+            get { return description; }
             set { SetPropertyValue(nameof(Description), ref description, value); }
         }
 
@@ -75,7 +75,7 @@ namespace BookSaleFairProject.DataBase
         [Persistent("type")] // This specifies the column name in the database
         public string Type
         {
-            get { return author; }
+            get { return type; }
             set { SetPropertyValue(nameof(Type), ref type, value); }
         }
 

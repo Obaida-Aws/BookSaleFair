@@ -23,28 +23,29 @@
             width: 100%;
         }
 
-        /* Styling for ASPxPanel1 */
+        
         .main-panel {
-            border: 1px solid #ccc; /* Add border */
-            padding: 20px; /* Add padding inside the panel */
-            max-width: 500px; /* Limit the maximum width of the panel */
-            margin: auto; /* Center the panel horizontally */
-            background-color: #f9f9f9; /* Background color */
+            border: 1px solid #ccc; 
+            padding: 20px; 
+            max-width: 500px; 
+            margin: auto; 
+            background-color: #f9f9f9; 
         }
 
-        /* Add margin-left to move text boxes right */
+        
         .move-right {
-            margin-left: 150px; /* Adjust this value to move the text boxes further right or left */
+            margin-left: 150px; 
         }
 
-         /* Styling for inline label and combo box */
+         
         .gender-container {
             display: flex;            
-            margin-left: 30px; /* Adjust this value as needed */
+            margin-left: 30px; 
+            
         }
 
         .gender-label {
-            margin-right: 25px; /* Adjust spacing between label and combo box */
+            margin-right: 25px; 
         }
     </style>
 
