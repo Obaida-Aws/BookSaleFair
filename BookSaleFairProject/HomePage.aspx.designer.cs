@@ -15,6 +15,24 @@ namespace BookSaleFairProject
     {
 
         /// <summary>
+        /// popupCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl popupCart;
+
+        /// <summary>
+        /// gridProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView gridProducts;
+
+        /// <summary>
         /// navbarPanel control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace BookSaleFairProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxMenu ASPxMenu1;
+
+        /// <summary>
+        /// ASPxButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton ASPxButton1;
 
         /// <summary>
         /// ASPxPanel1 control.

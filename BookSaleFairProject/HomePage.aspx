@@ -1,43 +1,48 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="BookSaleFairProject.HomePage" MasterPageFile="~/Site.master" %>
 
+
+
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
     <style>
-        
         body, html {
             margin: 0;
             padding: 0;
         }
 
-        
+
         .full-width-content {
             width: 100%;
             margin: 0;
             padding: 0;
         }
 
-        
+
         .navbar {
             background-color: #333;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px; 
+            padding: 10px 20px;
         }
 
-        .navbar .dxm-item {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 10px 15px;
-            transition: background-color 0.3s;
-            border-radius: 5px;
-        }
+            .navbar .dxm-item {
+                color: white;
+                margin: 0 15px;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 10px 15px;
+                transition: background-color 0.3s;
+                border-radius: 5px;
+            }
 
-        .navbar .dxm-item:hover {
-            background-color: #ddd;
-            color: black;
-        }
+                .navbar .dxm-item:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
 
         .centered {
             text-align: center;
@@ -53,12 +58,11 @@
 
         .main-panel {
             background-color: #f9f9f9;
-            padding: 20px 50px; 
+            padding: 20px 50px;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px; 
-         
+            margin-top: 20px;
         }
 
         .myCards {
@@ -90,22 +94,22 @@
             box-sizing: border-box;
         }
 
-        .Search1::placeholder {
-            color: #aaa;
-        }
+            .Search1::placeholder {
+                color: #aaa;
+            }
 
-        .Search1:hover {
-            border-color: #999;
-        }
+            .Search1:hover {
+                border-color: #999;
+            }
 
-        .Search1:focus {
-            border-color: #66afe9;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
+            .Search1:focus {
+                border-color: #66afe9;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
 
         .button-style {
             border-radius: 25px;
-            padding: 6px 20px; 
+            padding: 6px 20px;
             font-size: 16px;
             font-weight: bold;
             background-color: #007bff;
@@ -115,18 +119,62 @@
             transition: background-color 0.3s;
         }
 
-        .button-style:hover {
-            background-color: #0056b3;
-        }
+            .button-style:hover {
+                background-color: #0056b3;
+            }
 
         .action-buttons {
             display: flex;
             gap: 10px;
         }
-        .slider{
-            margin-left:100px;
+
+        .slider {
+            margin-left: 100px;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .centered-textbox {
+            display: flex;
+            justify-content: center;
+        }
+
+        .plain-text-button {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            font-size: inherit;
+            font-family: inherit;
+            color: red;
+            cursor: pointer;
+           
         }
     </style>
+    <dx:ASPxPopupControl ID="popupCart" runat="server" PopupElementID="ASPxButton1" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="Order Content">
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <div class="centered">
+                    <dx:ASPxGridView ID="gridProducts" runat="server" AutoGenerateColumns="False" KeyFieldName="Name">
+                        <Columns>
+                            <dx:GridViewDataTextColumn FieldName="Name" Caption="Name" />
+                            <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" />
+                            <dx:GridViewDataColumn Caption="Actions">
+                                <DataItemTemplate>
+                                    <dx:ASPxButton runat="server" Text="Cancel" OnClick="btn_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+
+                                </DataItemTemplate>
+                            </dx:GridViewDataColumn>
+                        </Columns>
+                    </dx:ASPxGridView>
+                </div>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
+
+
 
     <dx:ASPxPanel ID="navbarPanel" runat="server" CssClass="navbar">
         <PanelCollection>
@@ -140,6 +188,7 @@
                         <dx:MenuItem Text="Logout" NavigateUrl="Login.aspx" />
                     </Items>
                 </dx:ASPxMenu>
+                <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Cart" OnClick="ASPxok1_Click"></dx:ASPxButton>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>
@@ -147,20 +196,21 @@
     <dx:ASPxPanel ID="ASPxPanel1" runat="server" CssClass="main-panel">
         <PanelCollection>
             <dx:PanelContent>
-                <dx:ASPxMenu ID="ASPxMenu2" runat="server" CssClass="slider">
+                <dx:ASPxMenu ID="ASPxMenu2" runat="server" CssClass="slider" OnItemClick="ASPxMenu2_ItemClick">
                     <Items>
-                        <dx:MenuItem Text="Fiction" NavigateUrl="#home" />
-                        <dx:MenuItem Text="History" NavigateUrl="#chart" />
-                        <dx:MenuItem Text="Science" NavigateUrl="#services" />
-                        <dx:MenuItem Text="Children’s Books " NavigateUrl="#logout" />
-                        <dx:MenuItem Text="Poetry" NavigateUrl="#logout" />
-                        <dx:MenuItem Text="Young Adult (YA)" NavigateUrl="#logout" />
+                        <dx:MenuItem Text="Fiction" Name="Fiction" NavigateUrl="#home" />
+                        <dx:MenuItem Text="History" Name="History" NavigateUrl="#chart" />
+                        <dx:MenuItem Text="Science" Name="Science" NavigateUrl="#services" />
+                        <dx:MenuItem Text="Children’s Books" Name="Children" NavigateUrl="#logout" />
+                        <dx:MenuItem Text="Poetry" Name="Poetry" NavigateUrl="#logout" />
+                        <dx:MenuItem Text="Young Adult (YA)" Name="YoungAdult" NavigateUrl="#logout" />
                     </Items>
                 </dx:ASPxMenu>
+
                 <dx:ASPxPanel ID="ASPxPanel2" runat="server" CssClass="p1">
                     <PanelCollection>
                         <dx:PanelContent>
-                            <dx:ASPxTextBox CssClass="Search1" ID="ASPxTextBox1" runat="server" Style="margin-top: 20px;" NullText="  Search">
+                            <dx:ASPxTextBox CssClass="Search1" ID="ASPxTextBox1" runat="server" Style="margin-top: 20px;" NullText="Search">
                             </dx:ASPxTextBox>
                             <dx:ASPxPanel ID="ASPxPanel3" runat="server" CssClass="action-buttons2">
                                 <PanelCollection>
