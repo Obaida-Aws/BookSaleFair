@@ -19,7 +19,6 @@ namespace BookSaleFairProject
 
             if (!IsPostBack)
             {
-                // Example: Populate ComboBox with default data
                 List<string> type = new List<string>
                 {
                     "Fiction",
@@ -31,7 +30,6 @@ namespace BookSaleFairProject
 
                 };
 
-                // Bind data to ASPxComboBox
                 types.DataSource = type;
                 types.DataBind();
             }
@@ -40,61 +38,75 @@ namespace BookSaleFairProject
 
         protected void cites_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Update the selected location label
-            //  lblSelectedLocation.Text = "Selected Location: " + gender.SelectedItem.Text;
 
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validate input
+                
                 if (string.IsNullOrWhiteSpace(txtTitle.Text))
                 {
-                   // lblMessage.Text = "Book Name is required.";
+                   
                     return;
                 }
 
                 if (!decimal.TryParse(txtPrice.Text, out decimal price))
                 {
-                 //   lblMessage.Text = "Invalid price.";
+                    
                     return;
                 }
 
                 if (!int.TryParse(txtCount.Text, out int count))
                 {
-                   // lblMessage.Text = "Invalid count.";
+                  
                     return;
                 }
                 string selectedType = types.SelectedItem?.Text ?? "";
+
+                string filePath = null;
+                string title = txtTitle.Text.Trim();
+                string imageName = null;
+
+                if (Upload.HasFile)
+                {
+
+                    imageName = $"{title}.jpg";
+                    filePath = Page.MapPath("~/Books_Images/" + imageName);
+                    Upload.SaveAs(filePath);
+                }
+
+
                 using (var uow = new UnitOfWork())
                 {
                     Book newBook = new Book(uow)
                     {
                         Title = txtTitle.Text,
-                        Author=txtAuthor.Text,
+                        Author = txtAuthor.Text,
                         Price = price,
                         Count = count,
-                        Description= txtDescription.Text,
-                        Type= selectedType,
+                        Description = txtDescription.Text,
+                        Type = selectedType,
+                        ImageName = imageName
                     };
 
                     uow.Save(newBook);
                     uow.CommitChanges();
                 }
-                
+
                 Response.Redirect("HomePage.aspx");
                 txtTitle.Text = "";
                 txtPrice.Text = "";
                 txtCount.Text = "";
-                txtAuthor.Text = ""; 
+                txtAuthor.Text = "";
                 txtDescription.Text = "";
 
 
             }
             catch (Exception ex)
             {
-              //  lblMessage.Text = "Error adding book: " + ex.Message;
+                //  lblMessage.Text = "Error adding book: " + ex.Message;
+                Response.Write("Error adding book: " + ex.Message);
             }
         }
     }

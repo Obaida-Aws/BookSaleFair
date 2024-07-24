@@ -39,12 +39,29 @@
 
         .type-container {
             display: flex;
-            margin: 20px 60px  0 30px;
+            margin: 20px 60px 0 30px;
         }
-        .type-label{
-            margin-right: 25px; 
+
+        .type-label {
+            margin-right: 25px;
         }
     </style>
+
+    <script type="text/javascript">
+        function OnFileUploadComplete(s, e) {
+            document.getElementById('image').src = e.callbackData;
+        }
+
+        function BeforeFileUpload() {
+            var title = document.getElementById('txtTitle').value;
+            if (!title) {
+                alert("Title is required!");
+                return false;
+            }
+            hfTitle.Set("title", title);
+            alert("Title set to hidden field: " + title);
+        }
+    </script>
 
     <dx:ASPxPanel ID="ASPxPanel1" runat="server" CssClass="centered main-panel">
         <PanelCollection>
@@ -96,6 +113,12 @@
                                     </dx:PanelContent>
                                 </PanelCollection>
                             </dx:ASPxPanel>
+                            <br />
+
+                            <dx:ASPxUploadControl ID="Upload" runat="server" ShowUploadButton="False">
+                                <ValidationSettings AllowedFileExtensions=".jpg,.jpeg,.jpe,.gif">
+                                </ValidationSettings>
+                            </dx:ASPxUploadControl>
 
                         </dx:PanelContent>
                     </PanelCollection>

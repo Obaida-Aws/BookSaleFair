@@ -1,20 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="BookSaleFairProject.HomePage" MasterPageFile="~/Site.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <style>
         body, html {
             margin: 0;
             padding: 0;
         }
 
-
         .full-width-content {
             width: 100%;
             margin: 0;
             padding: 0;
         }
-
 
         .navbar {
             background-color: #333;
@@ -62,8 +59,8 @@
 
         .myCards {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .action-buttons2 {
@@ -79,7 +76,7 @@
         }
 
         .Search1 {
-            width: 380px;
+            width: 410px;
             height: 35px;
             padding: 6px;
             font-size: 16px;
@@ -127,10 +124,6 @@
             margin-left: 100px;
         }
 
-        .centered {
-            text-align: center;
-        }
-
         .centered-textbox {
             display: flex;
             justify-content: center;
@@ -145,9 +138,20 @@
             font-family: inherit;
             color: red;
             cursor: pointer;
-           
         }
+
+        .card-image {
+            margin-bottom: 10px;
+            margin-right: 50px;
+        }
+
+            .card-image img {
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+            }
     </style>
+
     <dx:ASPxPopupControl ID="popupCart" runat="server" PopupElementID="ASPxButton1" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="Order Content">
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
@@ -169,8 +173,6 @@
         </ContentCollection>
     </dx:ASPxPopupControl>
 
-
-
     <dx:ASPxPanel ID="navbarPanel" runat="server" CssClass="navbar">
         <PanelCollection>
             <dx:PanelContent>
@@ -178,12 +180,12 @@
                 <dx:ASPxMenu ID="ASPxMenu1" runat="server" CssClass="navbar">
                     <Items>
                         <dx:MenuItem Text="Home" NavigateUrl="#home" />
-                        <dx:MenuItem Text="Services" NavigateUrl="#services" />
+                        <dx:MenuItem Text="Cart" NavigateUrl="#chart" />
                         <dx:MenuItem Text="Logout" NavigateUrl="Login.aspx" />
                     </Items>
                 </dx:ASPxMenu>
                 <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Cart" OnClick="ASPxok1_Click"></dx:ASPxButton>
-                 <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Show Orders" OnClick="ASPxorder1_Click"></dx:ASPxButton>
+                <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Show Orders" OnClick="ASPxorder1_Click"></dx:ASPxButton>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>
@@ -193,19 +195,19 @@
             <dx:PanelContent>
                 <dx:ASPxMenu ID="ASPxMenu2" runat="server" CssClass="slider" OnItemClick="ASPxMenu2_ItemClick">
                     <Items>
-                        <dx:MenuItem Text="Fiction" Name="Fiction" NavigateUrl="#home" />
-                        <dx:MenuItem Text="History" Name="History" NavigateUrl="#chart" />
-                        <dx:MenuItem Text="Science" Name="Science" NavigateUrl="#services" />
-                        <dx:MenuItem Text="Children’s Books" Name="Children" NavigateUrl="#logout" />
-                        <dx:MenuItem Text="Poetry" Name="Poetry" NavigateUrl="#logout" />
-                        <dx:MenuItem Text="Young Adult (YA)" Name="YoungAdult" NavigateUrl="#logout" />
+                        <dx:MenuItem Text="All" />
+                        <dx:MenuItem Text="Fiction" />
+                        <dx:MenuItem Text="History" />
+                        <dx:MenuItem Text="Science" />
+                        <dx:MenuItem Text="Children’s Books " />
+                        <dx:MenuItem Text="Poetry" />
+                        <dx:MenuItem Text="Young Adult (YA)" />
                     </Items>
                 </dx:ASPxMenu>
-
                 <dx:ASPxPanel ID="ASPxPanel2" runat="server" CssClass="p1">
                     <PanelCollection>
                         <dx:PanelContent>
-                            <dx:ASPxTextBox CssClass="Search1" ID="ASPxTextBox1" runat="server" Style="margin-top: 20px;" NullText="Search">
+                            <dx:ASPxTextBox CssClass="Search1" ID="ASPxTextBox1" runat="server" Style="margin-top: 20px;" NullText="  Search">
                             </dx:ASPxTextBox>
                             <dx:ASPxPanel ID="ASPxPanel3" runat="server" CssClass="action-buttons2">
                                 <PanelCollection>
@@ -218,16 +220,19 @@
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>
-
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>
 
-    <!-- ASPxCardView without Layout Group and Layout Item -->
     <dx:ASPxCardView ID="ASPxCardView1" runat="server" Width="100%" CssClass="myCards">
         <Columns>
-            <dx:CardViewTextColumn FieldName="ID" Caption="ID" VisibleIndex="1">
-            </dx:CardViewTextColumn>
+            <dx:CardViewColumn Caption="" VisibleIndex="1">
+                <DataItemTemplate>
+                    <div class="card-image">
+                        <dx:ASPxImage ID="imgBook" runat="server" ImageUrl='<%# Eval("ImageUrl") %>' CssClass="card-image" />
+                    </div>
+                </DataItemTemplate>
+            </dx:CardViewColumn>
             <dx:CardViewTextColumn FieldName="Title" Caption="Title" VisibleIndex="2" />
             <dx:CardViewTextColumn FieldName="Description" Caption="Description" VisibleIndex="3" />
             <dx:CardViewTextColumn FieldName="Price" Caption="Price" VisibleIndex="4" />
@@ -241,5 +246,4 @@
             </dx:CardViewColumn>
         </Columns>
     </dx:ASPxCardView>
-
 </asp:Content>

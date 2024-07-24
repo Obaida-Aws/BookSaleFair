@@ -1,4 +1,5 @@
 ﻿using BookSaleFairProject.DataBase;
+using DevExpress.Data.Filtering;
 using DevExpress.Web;
 using DevExpress.Xpo;
 using System;
@@ -24,7 +25,6 @@ namespace BookSaleFairProject
                 BindPopupGrid();
             }
         }
-
 
         protected void BindPopupGrid()
         {
@@ -61,23 +61,9 @@ namespace BookSaleFairProject
         {
         }
 
-            protected void ASPxMenu2_ItemClick(object source, DevExpress.Web.MenuItemEventArgs e)
+        protected void ASPxorder1_Click(object sender, EventArgs e)
         {
-            string type = e.Item.Name;
-            Console.WriteLine("Hello World! ");
-
-            if (!string.IsNullOrEmpty(type))
-            {
-                ASPxCardView1.FilterExpression = $"Type = '{type}'";
-            }
-            else
-            {
-                
-                ASPxCardView1.FilterExpression = "";
-            }
-
-            ASPxCardView1.DataBind(); 
-            
+            Response.Redirect("ShowOrders.aspx");
         }
 
 
@@ -87,18 +73,16 @@ namespace BookSaleFairProject
             Response.Redirect("AddNewBook.aspx");
         }
 
-        protected void ASPxorder1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ShowOrders.aspx");
-        }
-
-
 
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string searchTerm = ASPxTextBox1.Text.Trim();
+
+
             ASPxCardView1.FilterExpression = $"Contains([Title], '{searchTerm}')";
+
+
             ASPxCardView1.DataBind();
         }
 
@@ -107,13 +91,22 @@ namespace BookSaleFairProject
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
+
+            // Redirect to EditBookData.aspx with the index as a query parameter
             Response.Redirect($"EditBookData.aspx?index={index}");
+        }
+
+        protected void ASPxMenu2_ItemClick(object source, DevExpress.Web.MenuItemEventArgs e)
+        {
+            string selectedType = e.Item.Text;
+            BindBooksGrid(selectedType);
         }
 
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
+            // Retrieve the ID from your data source using the index
             var dataSource = ViewState["DataSource"] as List<CardData>;
             int bookIdToDelete = dataSource[index].ID;
 
@@ -122,13 +115,14 @@ namespace BookSaleFairProject
             if (book != null)
             {
                 book.Delete();
-
+                //   session.Save(book); // Save the changes
+                // we don't need it the delete 
             }
             Response.Redirect(Request.RawUrl);
         }
 
 
-        protected void BindBooksGrid()
+        protected void BindBooksGrid(string bookType = null)
         {
             Session session = XpoDefault.Session;
 
@@ -138,17 +132,27 @@ namespace BookSaleFairProject
                 XpoDefault.Session = session;
             }
 
-            XPCollection<Book> booksCollection = new XPCollection<Book>(session);
+            XPCollection<Book> booksCollection;
 
-            
+            if (string.IsNullOrEmpty(bookType)|| bookType=="All")
+            {
+                // Get all books if bookType is null or empty
+                booksCollection = new XPCollection<Book>(session);
+            }
+            else
+            {
+                // Get books with the specified type
+                booksCollection = new XPCollection<Book>(session, CriteriaOperator.Parse("Type = ?", bookType));
+            }
+
+            // Convert XPCollection to List<CardData>
             var dataSource = booksCollection.Select(book => new CardData
             {
                 ID = book.Id,
                 Title = book.Title,
                 Description = book.Description,
                 Price = book.Price,
-                Type=book.Type
-
+                ImageUrl = string.IsNullOrEmpty(book.ImageName) ? null : $"/Books_Images/{book.ImageName}"
             }).ToList();
 
             ViewState["DataSource"] = dataSource;
@@ -158,26 +162,20 @@ namespace BookSaleFairProject
         }
 
 
+        [Serializable]
+        public class CardData
+        {
+            public int ID { get; set; }
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public Decimal Price { get; set; }
+            public string ImageUrl { get; set; }
+        }
 
-
+        public class Product
+        {
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+        }
     }
-
-
-    [Serializable]
-    public class CardData
-    {   
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public Decimal Price { get; set; }
-        public string Type { get; set; }
-    }
-
-    public class Product
-    {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-    }
-
-
 }

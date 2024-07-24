@@ -110,6 +110,7 @@
       <DependentUpon>AddNewBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataBase\Book.cs" />
+    <Compile Include="DataBase\Order.cs" />
     <Compile Include="DataBase\User.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -188,6 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Books_Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />

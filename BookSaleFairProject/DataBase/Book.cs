@@ -79,6 +79,14 @@ namespace BookSaleFairProject.DataBase
             set { SetPropertyValue(nameof(Type), ref type, value); }
         }
 
+        private string imageName;
+        [Persistent("imageName")] // This specifies the column name in the database
+        public string ImageName
+        {
+            get { return imageName; }
+            set { SetPropertyValue(nameof(ImageName), ref imageName, value); }
+        }
+
         public override void AfterConstruction()
         {
             base.AfterConstruction();
