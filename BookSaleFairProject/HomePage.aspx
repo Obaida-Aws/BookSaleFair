@@ -136,7 +136,7 @@
             margin: 0;
             font-size: inherit;
             font-family: inherit;
-            color: red;
+            color: green;
             cursor: pointer;
         }
 
@@ -152,17 +152,24 @@
             }
     </style>
 
-    <dx:ASPxPopupControl ID="popupCart" runat="server" PopupElementID="ASPxButton1" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="Order Content">
+    <dx:ASPxPopupControl ID="popupCart" runat="server" PopupElementID="ASPxButton1" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="My Orders">
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <div class="centered">
                     <dx:ASPxGridView ID="gridProducts" runat="server" AutoGenerateColumns="False" KeyFieldName="Name">
                         <Columns>
-                            <dx:GridViewDataTextColumn FieldName="Name" Caption="Name" />
-                            <dx:GridViewDataTextColumn FieldName="Price" Caption="Price" />
+                            <dx:GridViewDataTextColumn FieldName="orderId" Caption="Order Id" />
+                            <dx:GridViewDataTextColumn FieldName="Price" Caption="Total Price" />
+                            <dx:GridViewDataTextColumn FieldName="Date" Caption="Order Date" />
+                            <dx:GridViewDataColumn Caption="Status">
+                                <DataItemTemplate>
+                                    <dx:ASPxButton runat="server" Text="Show" OnClick="btn_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+
+                                </DataItemTemplate>
+                            </dx:GridViewDataColumn>
                             <dx:GridViewDataColumn Caption="Actions">
                                 <DataItemTemplate>
-                                    <dx:ASPxButton runat="server" Text="Cancel" OnClick="btn_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+                                    <dx:ASPxButton runat="server" Text="Show" OnClick="btn_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
 
                                 </DataItemTemplate>
                             </dx:GridViewDataColumn>

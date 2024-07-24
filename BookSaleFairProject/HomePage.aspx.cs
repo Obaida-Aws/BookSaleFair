@@ -30,9 +30,9 @@ namespace BookSaleFairProject
         {
             List<Product> products = new List<Product>
             {
-                new Product { Name = "Product A", Price = 10.50M },
-                new Product { Name = "Product B", Price = 20.75M },
-                new Product { Name = "Product C", Price = 15.25M }
+                new Product { orderId = 1, Price = 10.50M, Date = new DateTime(2024, 7, 23) },
+                new Product { orderId = 2, Price = 20.75M, Date = new DateTime(2024, 7, 24) },
+                new Product { orderId = 3, Price = 15.25M, Date = new DateTime(2024, 7, 25) }
                 // Add more dummy data as needed
             };
 
@@ -174,8 +174,10 @@ namespace BookSaleFairProject
 
         public class Product
         {
-            public string Name { get; set; }
+            public int orderId { get; set; }
             public decimal Price { get; set; }
+            public DateTime Date { get; set; }
+           
         }
     }
 }

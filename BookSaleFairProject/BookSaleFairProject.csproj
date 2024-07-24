@@ -81,6 +81,7 @@
     <Content Include="images\cart.png" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="ShowOrderContent.aspx" />
     <Content Include="ShowOrders.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Site.master" />
@@ -111,6 +112,7 @@
     </Compile>
     <Compile Include="DataBase\Book.cs" />
     <Compile Include="DataBase\Order.cs" />
+    <Compile Include="DataBase\orderList.cs" />
     <Compile Include="DataBase\User.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -165,6 +167,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowOrderContent.aspx.cs">
+      <DependentUpon>ShowOrderContent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowOrderContent.aspx.designer.cs">
+      <DependentUpon>ShowOrderContent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShowOrders.aspx.cs">
       <DependentUpon>ShowOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
