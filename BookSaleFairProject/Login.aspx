@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        
         .centered {
             margin-top: 50px;
             text-align: center;
@@ -23,23 +22,23 @@
             width: 100%;
         }
 
-      
+
         .main-panel {
-            border: 1px solid #ccc; 
-            padding: 20px; 
-            max-width: 400px; 
-            margin: auto; 
-            background-color: #f9f9f9; 
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            background-color: #f9f9f9;
         }
 
-       
+
         .move-right {
-            margin-left: 60px; 
+            margin-left: 60px;
         }
 
-       
+
         .forgot-password {
-            margin-left: 160px; 
+            margin-left: 160px;
             text-align: right;
             margin-top: 10px;
         }
@@ -49,7 +48,8 @@
         <PanelCollection>
             <dx:PanelContent>
                 <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Login Page" Font-Size="X-Large"></dx:ASPxLabel>
-                <br /><br />
+                <br />
+                <br />
                 <dx:ASPxPanel ID="ASPxPanel2" runat="server" CssClass="ss">
                     <PanelCollection>
                         <dx:PanelContent CssClass="center-content">
@@ -58,7 +58,8 @@
                                     <RequiredField IsRequired="true" ErrorText="Username is required." />
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
-                            <br /><br />
+                            <br />
+                            <br />
                             <dx:ASPxTextBox ID="txtPassword" runat="server" Placeholder="Password" Width="100%" Password="true" Height="35px" NullText="Enter Your Password" CssClass="move-right">
                                 <ValidationSettings>
                                     <RequiredField IsRequired="true" ErrorText="Password is required." />
@@ -71,8 +72,15 @@
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>
-                <br /><br />
-                <dx:ASPxButton ID="btnLogin" runat="server" Text="Login" Style="margin-right: 20px;" OnClick="btnLogin_Click" CausesValidation="true"></dx:ASPxButton>
+                <br />
+                <br />
+                <dx:ASPxButton ID="btnLogin" runat="server" Text="Login" Style="margin-right: 20px;" OnClick="btnLogin_Click" CommandArgument='<%# txtUsername.Text %>' CausesValidation="true">
+                    <ClientSideEvents Click="function(s, e) {
+        if (!ASPxClientEdit.ValidateGroup('validationGroup')) {
+            e.processOnServer = false;
+        }
+    }" />
+                </dx:ASPxButton>
                 <asp:HyperLink ID="lnkSignUp" runat="server" NavigateUrl="SignUp.aspx" Text="Sign Up"></asp:HyperLink>
             </dx:PanelContent>
         </PanelCollection>

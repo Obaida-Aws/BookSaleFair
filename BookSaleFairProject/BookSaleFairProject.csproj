@@ -79,6 +79,8 @@
     <Content Include="HomePage.aspx" />
     <Content Include="images\Book.jpg" />
     <Content Include="images\cart.png" />
+    <Content Include="images\delete.png" />
+    <Content Include="images\remove1.png" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="ShowOrderContent.aspx" />

@@ -142,7 +142,6 @@
 
         .card-image {
             margin-bottom: 10px;
-            margin-right: 50px;
         }
 
             .card-image img {
@@ -161,18 +160,24 @@
                             <dx:GridViewDataTextColumn FieldName="orderId" Caption="Order Id" />
                             <dx:GridViewDataTextColumn FieldName="Price" Caption="Total Price" />
                             <dx:GridViewDataTextColumn FieldName="Date" Caption="Order Date" />
-                            <dx:GridViewDataColumn Caption="Status">
-                                <DataItemTemplate>
-                                    <dx:ASPxButton runat="server" Text="Show" OnClick="btn_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+                            <dx:GridViewDataTextColumn FieldName="Status" Caption="Status" />
 
-                                </DataItemTemplate>
-                            </dx:GridViewDataColumn>
                             <dx:GridViewDataColumn Caption="Actions">
                                 <DataItemTemplate>
                                     <dx:ASPxButton runat="server" Text="Show" OnClick="btn_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
 
                                 </DataItemTemplate>
                             </dx:GridViewDataColumn>
+                            <dx:GridViewDataColumn Caption="Delete">
+                                <DataItemTemplate>
+                                    <dx:ASPxButton runat="server" ClientInstanceName="btnAction"
+                                        AutoPostBack="False" CssClass="plain-text-button"
+                                        OnClick="btnAction_Click">
+                                        <Image Url="~/images/remove1.png" Width="16px" Height="16px" />
+                                    </dx:ASPxButton>
+                                </DataItemTemplate>
+                            </dx:GridViewDataColumn>
+
                         </Columns>
                     </dx:ASPxGridView>
                 </div>

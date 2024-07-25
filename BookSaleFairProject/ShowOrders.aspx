@@ -5,22 +5,23 @@
         .centered {
             text-align: center;
             margin-bottom: 20px;
-            width: 100%; 
+            width: 100%;
         }
 
         .page-title {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
-            display: block; 
-            margin: 0 auto; 
-            text-align: center; 
+            display: block;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .panel-container {
-            display: block; 
-            margin: 0 auto; 
-            text-align: left; 
+            display: block;
+            margin-top: 40px;
+            margin-left: 200px;
+            text-align: left;
         }
 
         .plain-text-button {

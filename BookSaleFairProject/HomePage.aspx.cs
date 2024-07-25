@@ -15,30 +15,57 @@ namespace BookSaleFairProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindBooksGrid();
-            // Ensure the popup is hidden initially
-            popupCart.ShowOnPageLoad = false;
-
             if (!IsPostBack)
             {
-                // Bind dummy data to the grid inside the popup
-                BindPopupGrid();
+                // Check if username is provided in the query string
+                if (Request.QueryString["userId"] != null)
+                {
+                    string userId = Request.QueryString["userId"];
+                   // lblWelcomeMessage.Text = $"Welcome, {username}!";
+                }
+
+                // Bind the main grid and other initializations
+                BindBooksGrid();
+                popupCart.ShowOnPageLoad = false;
+                BindPopupGrid(Request.QueryString["userId"]); // Assuming this is for initializing popup grid data
             }
         }
 
-        protected void BindPopupGrid()
+        protected void BindPopupGrid(string userId)
         {
-            List<Product> products = new List<Product>
+            int userIdInt;
+            if (!int.TryParse(userId, out userIdInt))
             {
-                new Product { orderId = 1, Price = 10.50M, Date = new DateTime(2024, 7, 23) },
-                new Product { orderId = 2, Price = 20.75M, Date = new DateTime(2024, 7, 24) },
-                new Product { orderId = 3, Price = 15.25M, Date = new DateTime(2024, 7, 25) }
-                // Add more dummy data as needed
-            };
+                // Handle invalid userId input
+                return;
+            }
 
-            gridProducts.DataSource = products;
+            Session session = XpoDefault.Session;
+
+            if (session == null)
+            {
+                session = new Session();
+                XpoDefault.Session = session;
+            }
+
+            XPCollection<Order> ordersCollection = new XPCollection<Order>(session);
+
+            // Assuming Order has a UserId property to match against
+            ordersCollection.Criteria = CriteriaOperator.Parse("CustomerId = ?", userIdInt);
+
+            var dataSource = ordersCollection.Select(order => new Product
+            {
+                orderId = order.Id,
+                Price = order.TotalPrice,
+                Date = order.Date,
+                Status = order.Status
+            }).ToList();
+
+            ViewState["DataSource"] = dataSource;
+            gridProducts.DataSource = dataSource;
             gridProducts.DataBind();
         }
+
 
         protected void gridProducts_CustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
         {
@@ -58,6 +85,10 @@ namespace BookSaleFairProject
         }
 
         protected void btn_Click(object sender, EventArgs e)
+        {
+        }
+
+        protected void btnAction_Click(object sender, EventArgs e)
         {
         }
 
@@ -172,12 +203,14 @@ namespace BookSaleFairProject
             public string ImageUrl { get; set; }
         }
 
+        [Serializable]
         public class Product
         {
             public int orderId { get; set; }
             public decimal Price { get; set; }
             public DateTime Date { get; set; }
-           
+            public string Status { get; set; }
+
         }
     }
 }

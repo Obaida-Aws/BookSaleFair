@@ -27,12 +27,23 @@ namespace BookSaleFairProject.DataBase
             set { SetPropertyValue(nameof(Date), ref date, value); }
         }
 
+
+
         private decimal totalPrice;
         [Persistent("totalPrice")]
         public decimal TotalPrice
         {
             get { return totalPrice; }
             set { SetPropertyValue(nameof(TotalPrice), ref totalPrice, value); }
+        }
+
+
+        private int customerId;
+        [Persistent("customerId")]
+        public int CustomerId
+        {
+            get { return CustomerId; }
+            set { SetPropertyValue(nameof(TotalPrice), ref customerId, value); }
         }
 
 
