@@ -21,7 +21,20 @@ namespace BookSaleFairProject
                 if (Request.QueryString["userId"] != null)
                 {
                     string userId = Request.QueryString["userId"];
-                   // lblWelcomeMessage.Text = $"Welcome, {username}!";
+                    // lblWelcomeMessage.Text = $"Welcome, {username}!";
+                    string userType = Request.QueryString["userType"];
+
+                    // Check if userType is "user" to show the button
+                    if (userType == "user")
+                    {
+                        ASPxButton2.Visible = false;
+                        ASPxButton1.Visible = true;
+                    }
+                    else
+                    {
+                        ASPxButton2.Visible = true;
+                        ASPxButton1.Visible = false;
+                    }
                 }
 
                 // Bind the main grid and other initializations
@@ -30,6 +43,8 @@ namespace BookSaleFairProject
                 BindPopupGrid(Request.QueryString["userId"]); // Assuming this is for initializing popup grid data
             }
         }
+
+
 
         protected void BindPopupGrid(string userId)
         {
@@ -86,6 +101,7 @@ namespace BookSaleFairProject
 
         protected void btn_Click(object sender, EventArgs e)
         {
+            Response.Redirect("ShowOrderContent.aspx");
         }
 
         protected void btnAction_Click(object sender, EventArgs e)

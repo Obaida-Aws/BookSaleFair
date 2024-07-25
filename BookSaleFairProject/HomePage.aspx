@@ -196,8 +196,8 @@
                         <dx:MenuItem Text="Logout" NavigateUrl="Login.aspx" />
                     </Items>
                 </dx:ASPxMenu>
-                <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Cart" OnClick="ASPxok1_Click"></dx:ASPxButton>
-                <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Show Orders" OnClick="ASPxorder1_Click"></dx:ASPxButton>
+                <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Cart" OnClick="ASPxok1_Click" Visible="true"></dx:ASPxButton>
+                <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Show Orders" OnClick="ASPxorder1_Click" Visible="true"></dx:ASPxButton>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>

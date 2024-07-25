@@ -41,7 +41,8 @@ namespace BookSaleFairProject
                    DateTime.Now,           
                    DateTime.Now.AddMinutes(30),
                    false,
-                   user.Id.ToString()
+                   user.Id.ToString(),
+                   user.Type
                 );
 
                 string encryptedTicket = FormsAuthentication.Encrypt(ticket);
@@ -52,7 +53,8 @@ namespace BookSaleFairProject
                 Session["Username"] = user.Username;
 
                 //   Response.Redirect("HomePage.aspx");
-                Response.Redirect($"HomePage.aspx?userId={user.Id}");
+                Response.Redirect($"HomePage.aspx?userId={user.Id}&userType={user.Type}");
+
             }
             else
             {
