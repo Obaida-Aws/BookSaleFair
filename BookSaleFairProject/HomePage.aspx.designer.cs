@@ -33,6 +33,33 @@ namespace BookSaleFairProject
         protected global::DevExpress.Web.ASPxGridView gridProducts;
 
         /// <summary>
+        /// ASPxPopupContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl ASPxPopupContent;
+
+        /// <summary>
+        /// ASPxPanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPanel ASPxPanel4;
+
+        /// <summary>
+        /// gridOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView gridOrders;
+
+        /// <summary>
         /// navbarPanel control.
         /// </summary>
         /// <remarks>
@@ -76,6 +103,15 @@ namespace BookSaleFairProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton ASPxButton2;
+
+        /// <summary>
+        /// ASPxButton3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton ASPxButton3;
 
         /// <summary>
         /// ASPxPanel1 control.

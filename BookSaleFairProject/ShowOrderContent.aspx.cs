@@ -15,7 +15,7 @@ namespace BookSaleFairProject
         {
             if (!IsPostBack)
             {
-                BindBooksGrid();
+                BindContentGrid();
             }
         }
 
@@ -31,7 +31,7 @@ namespace BookSaleFairProject
             // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
         }
 
-        protected void BindBooksGrid()
+        protected void BindContentGrid()
         {
             Session session = XpoDefault.Session;
 

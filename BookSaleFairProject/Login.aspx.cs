@@ -52,7 +52,7 @@ namespace BookSaleFairProject
 
                 Session["Username"] = user.Username;
 
-                //   Response.Redirect("HomePage.aspx");
+                
                 Response.Redirect($"HomePage.aspx?userId={user.Id}&userType={user.Type}");
 
             }

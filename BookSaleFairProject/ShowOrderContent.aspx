@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <style>
-        .centered {
+        .centered22 {
             text-align: center;
             margin-bottom: 20px;
             width: 100%;

@@ -149,6 +149,39 @@
                 height: 200px;
                 object-fit: cover;
             }
+
+                    .centered22 {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .panel-container {
+            display: block;
+            margin-top: 20px;
+            margin-left:20px;
+            text-align: left;
+        }
+
+        .plain-text-button {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            font-size: inherit;
+            font-family: inherit;
+            color: red;
+            cursor: pointer;
+        }
     </style>
 
     <dx:ASPxPopupControl ID="popupCart" runat="server" PopupElementID="ASPxButton1" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="My Orders">
@@ -172,7 +205,7 @@
                                 <DataItemTemplate>
                                     <dx:ASPxButton runat="server" ClientInstanceName="btnAction"
                                         AutoPostBack="False" CssClass="plain-text-button"
-                                        OnClick="btnAction_Click">
+                                        OnClick="btnActionDelete_Click">
                                         <Image Url="~/images/remove1.png" Width="16px" Height="16px" />
                                     </dx:ASPxButton>
                                 </DataItemTemplate>
@@ -184,6 +217,37 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+
+      <dx:ASPxPopupControl ID="ASPxPopupContent" runat="server" PopupElementID="ASPxButton1" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" HeaderText="Order Content">
+          <ContentCollection>
+              <dx:PopupControlContentControl runat="server">
+                  
+
+    <dx:ASPxPanel ID="ASPxPanel4" runat="server" CssClass="panel-container">
+        <PanelCollection>
+            <dx:PanelContent>
+                <dx:ASPxGridView ID="gridOrders" runat="server" AutoGenerateColumns="False" KeyFieldName="OrderId">
+                    <Columns>
+                        <dx:GridViewDataTextColumn FieldName="OrderId" Caption="Book Name" />
+                        <dx:GridViewDataTextColumn FieldName="Name" Caption="Price" />
+                        <dx:GridViewDataTextColumn FieldName="Price" Caption="Total Price" />
+                        <dx:GridViewDataTextColumn FieldName="Date" Caption="Order Date" />
+
+                        <dx:GridViewDataCheckColumn Caption="Actions">
+                            <DataItemTemplate>
+                                <dx:ASPxButton runat="server" Text="Cancel" OnClick="btnAccept_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+
+                            </DataItemTemplate>
+                        </dx:GridViewDataCheckColumn>
+                    </Columns>
+                </dx:ASPxGridView>
+            </dx:PanelContent>
+        </PanelCollection>
+    </dx:ASPxPanel>
+              </dx:PopupControlContentControl>
+          </ContentCollection>
+           </dx:ASPxPopupControl>
+    
 
     <dx:ASPxPanel ID="navbarPanel" runat="server" CssClass="navbar">
         <PanelCollection>
@@ -198,6 +262,7 @@
                 </dx:ASPxMenu>
                 <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Cart" OnClick="ASPxok1_Click" Visible="true"></dx:ASPxButton>
                 <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Show Orders" OnClick="ASPxorder1_Click" Visible="true"></dx:ASPxButton>
+                 <dx:ASPxButton ID="ASPxButton3" runat="server" Text="Add New Employee" OnClick="ASPEmp1_Click" Visible="false"></dx:ASPxButton>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>
@@ -224,8 +289,8 @@
                             <dx:ASPxPanel ID="ASPxPanel3" runat="server" CssClass="action-buttons2">
                                 <PanelCollection>
                                     <dx:PanelContent>
-                                        <dx:ASPxButton ID="btnSearch" runat="server" Text="Search" Style="margin-top: 20px;" Height="35px" CssClass="button-style" OnClick="btnSearch_Click" />
-                                        <dx:ASPxButton ID="btnAdd" runat="server" Text="Add Book" Style="margin-top: 20px;" Height="35px" CssClass="button-style" OnClick="ASPxButton1_Click" />
+                                        <dx:ASPxButton ID="btnSearch" runat="server" Text="Search" Style="margin-top: 20px;" Height="35px" CssClass="button-style" OnClick="btnSearch_Click"  />
+                                        <dx:ASPxButton ID="btnAdd" runat="server" Text="Add Book" Style="margin-top: 20px;" Height="35px" CssClass="button-style" OnClick="ASPxButton1_Click" Visible="false" />
                                     </dx:PanelContent>
                                 </PanelCollection>
                             </dx:ASPxPanel>
@@ -251,8 +316,8 @@
             <dx:CardViewColumn Caption="Actions" VisibleIndex="5">
                 <DataItemTemplate>
                     <div class="action-buttons">
-                        <dx:ASPxButton ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" CommandArgument='<%# Container.VisibleIndex %>' />
-                        <dx:ASPxButton ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" CommandArgument='<%# Container.VisibleIndex %>' />
+                        <dx:ASPxButton ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" CommandArgument='<%# Container.VisibleIndex %>' Visible="true" />
+                        <dx:ASPxButton ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" CommandArgument='<%# Container.VisibleIndex %>'  Visible="true"/>
                     </div>
                 </DataItemTemplate>
             </dx:CardViewColumn>

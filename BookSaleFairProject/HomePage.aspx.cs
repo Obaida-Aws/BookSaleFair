@@ -17,6 +17,7 @@ namespace BookSaleFairProject
         {
             if (!IsPostBack)
             {
+                BindContentGrid();
                 // Check if username is provided in the query string
                 if (Request.QueryString["userId"] != null)
                 {
@@ -29,20 +30,59 @@ namespace BookSaleFairProject
                     {
                         ASPxButton2.Visible = false;
                         ASPxButton1.Visible = true;
+                        btnAdd.Visible = false;
+                    //    btnDelete.Visible = false;
+
+
+                    }else if(userType == "admin")
+                    {
+                        ASPxButton3.Visible = true;
+                        ASPxButton1.Visible = false;
                     }
                     else
                     {
                         ASPxButton2.Visible = true;
                         ASPxButton1.Visible = false;
+                        btnAdd.Visible = true;
                     }
                 }
 
                 // Bind the main grid and other initializations
                 BindBooksGrid();
                 popupCart.ShowOnPageLoad = false;
+                ASPxPopupContent.ShowOnPageLoad = false;
                 BindPopupGrid(Request.QueryString["userId"]); // Assuming this is for initializing popup grid data
             }
         }
+
+        // when i delete from Order table should i also delete from orderList table ....
+
+        protected void btnActionDelete_Click(object sender, EventArgs e)
+        {
+            // Determine the row index of the button clicked
+            var button = (sender as ASPxButton);
+            var container = button.NamingContainer as GridViewDataItemTemplateContainer;
+            int visibleIndex = container.VisibleIndex;
+
+            
+            List<Product> dataSource = ViewState["DataSource"] as List<Product>;
+            int orderId = dataSource[visibleIndex].orderId;
+
+
+            Session session = XpoDefault.Session;
+            Order order = session.GetObjectByKey<Order>(orderId);
+            if (order != null)
+            {
+                order.Delete();
+            }
+            Response.Redirect(Request.RawUrl);
+
+
+
+        }
+
+
+
 
 
 
@@ -51,7 +91,7 @@ namespace BookSaleFairProject
             int userIdInt;
             if (!int.TryParse(userId, out userIdInt))
             {
-                // Handle invalid userId input
+           
                 return;
             }
 
@@ -65,7 +105,7 @@ namespace BookSaleFairProject
 
             XPCollection<Order> ordersCollection = new XPCollection<Order>(session);
 
-            // Assuming Order has a UserId property to match against
+           
             ordersCollection.Criteria = CriteriaOperator.Parse("CustomerId = ?", userIdInt);
 
             var dataSource = ordersCollection.Select(order => new Product
@@ -84,14 +124,14 @@ namespace BookSaleFairProject
 
         protected void gridProducts_CustomButtonCallback(object sender, ASPxGridViewCustomButtonCallbackEventArgs e)
         {
-            // Handle the cancel button click inside the grid
             if (e.ButtonID == "Cancel")
             {
-                // Your cancel button logic here, if needed
-                popupCart.ShowOnPageLoad = false; // Hide the popup after cancellation
+                popupCart.ShowOnPageLoad = false; 
             }
         }
 
+        // to delete one of my orders from the first popup
+ 
 
 
         protected void ASPxok1_Click(object sender, EventArgs e)
@@ -99,14 +139,18 @@ namespace BookSaleFairProject
             popupCart.ShowOnPageLoad = true;
         }
 
-        protected void btn_Click(object sender, EventArgs e)
+        protected void ASPEmp1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ShowOrderContent.aspx");
+            Response.Redirect("AddEmployee.aspx");
         }
 
-        protected void btnAction_Click(object sender, EventArgs e)
+        protected void btn_Click(object sender, EventArgs e)
         {
+            
+            ASPxPopupContent.ShowOnPageLoad = true;
         }
+
+
 
         protected void ASPxorder1_Click(object sender, EventArgs e)
         {
@@ -139,7 +183,7 @@ namespace BookSaleFairProject
         {
             int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
 
-            // Redirect to EditBookData.aspx with the index as a query parameter
+            
             Response.Redirect($"EditBookData.aspx?index={index}");
         }
 
@@ -153,7 +197,7 @@ namespace BookSaleFairProject
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
-            // Retrieve the ID from your data source using the index
+            
             var dataSource = ViewState["DataSource"] as List<CardData>;
             int bookIdToDelete = dataSource[index].ID;
 
@@ -162,8 +206,7 @@ namespace BookSaleFairProject
             if (book != null)
             {
                 book.Delete();
-                //   session.Save(book); // Save the changes
-                // we don't need it the delete 
+
             }
             Response.Redirect(Request.RawUrl);
         }
@@ -183,12 +226,11 @@ namespace BookSaleFairProject
 
             if (string.IsNullOrEmpty(bookType)|| bookType=="All")
             {
-                // Get all books if bookType is null or empty
+              
                 booksCollection = new XPCollection<Book>(session);
             }
             else
             {
-                // Get books with the specified type
                 booksCollection = new XPCollection<Book>(session, CriteriaOperator.Parse("Type = ?", bookType));
             }
 
@@ -206,6 +248,48 @@ namespace BookSaleFairProject
 
             ASPxCardView1.DataSource = dataSource;
             ASPxCardView1.DataBind();
+        }
+
+        // from OOMM
+        protected void btnAccept_Click(object sender, EventArgs e)
+        {
+            // Handle accept button click
+            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
+            // Handle reject button click
+            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
+        }
+
+        protected void BindContentGrid()
+        {
+            Session session = XpoDefault.Session;
+
+            if (session == null)
+            {
+                session = new Session();
+                XpoDefault.Session = session;
+            }
+
+            XPCollection<Order> ordersCollection = new XPCollection<Order>(session);
+
+
+            // Convert XPCollection to List<Order>
+            var dataSource = ordersCollection.Select(order => new orderContent
+            {
+                OrderId = order.Id,
+                Name = order.CustomerName,
+                Price = order.TotalPrice,
+                Date = order.Date,
+                Status = order.Status
+            }).ToList();
+
+            // Bind the dataSource to the gridOrders
+            ViewState["DataSource"] = dataSource;
+            gridOrders.DataSource = dataSource;
+            gridOrders.DataBind();
         }
 
 
@@ -227,6 +311,16 @@ namespace BookSaleFairProject
             public DateTime Date { get; set; }
             public string Status { get; set; }
 
+        }
+
+        [Serializable]
+        public class orderContent
+        {
+            public int OrderId { get; set; }
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+            public DateTime Date { get; set; }
+            public string Status { get; set; }
         }
     }
 }
