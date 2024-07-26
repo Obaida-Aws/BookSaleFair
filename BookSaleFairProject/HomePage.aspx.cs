@@ -13,11 +13,14 @@ namespace BookSaleFairProject
 {
     public partial class HomePage : System.Web.UI.Page
     {
+
+        private Session _session;
+        public string orderID;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindContentGrid();
+              //  BindContentGrid();
                 // Check if username is provided in the query string
                 if (Request.QueryString["userId"] != null)
                 {
@@ -52,6 +55,7 @@ namespace BookSaleFairProject
                 popupCart.ShowOnPageLoad = false;
                 ASPxPopupContent.ShowOnPageLoad = false;
                 BindPopupGrid(Request.QueryString["userId"]); // Assuming this is for initializing popup grid data
+
             }
         }
 
@@ -85,7 +89,11 @@ namespace BookSaleFairProject
 
 
 
-
+        protected void btnAccept_Click(object sender, EventArgs e)
+        {
+            // Handle accept button click
+            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
+        }
         protected void BindPopupGrid(string userId)
         {
             int userIdInt;
@@ -115,6 +123,7 @@ namespace BookSaleFairProject
                 Date = order.Date,
                 Status = order.Status
             }).ToList();
+
 
             ViewState["DataSource"] = dataSource;
             gridProducts.DataSource = dataSource;
@@ -146,7 +155,17 @@ namespace BookSaleFairProject
 
         protected void btn_Click(object sender, EventArgs e)
         {
-            
+            ASPxButton button = sender as ASPxButton;
+            if (button != null)
+            {
+                string orderId = button.CommandArgument;
+                orderID = orderId.Trim();
+                BindContentGrid(orderId);
+
+                // Response.Redirect($"ShowOrderContent.aspx?orderId={orderId}");
+
+            }
+        //    ASPxPopupContent.Width = Unit.Pixel(800);
             ASPxPopupContent.ShowOnPageLoad = true;
         }
 
@@ -251,19 +270,20 @@ namespace BookSaleFairProject
         }
 
         // from OOMM
-        protected void btnAccept_Click(object sender, EventArgs e)
+        private void InitializeSession()
         {
-            // Handle accept button click
-            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
+            _session = XpoDefault.Session;
+            if (_session == null)
+            {
+                _session = new Session();
+                XpoDefault.Session = _session;
+            }
+
         }
 
-        protected void btnReject_Click(object sender, EventArgs e)
-        {
-            // Handle reject button click
-            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
-        }
 
-        protected void BindContentGrid()
+
+        protected void BindContentGrid(string orderId)
         {
             Session session = XpoDefault.Session;
 
@@ -273,24 +293,122 @@ namespace BookSaleFairProject
                 XpoDefault.Session = session;
             }
 
-            XPCollection<Order> ordersCollection = new XPCollection<Order>(session);
 
 
-            // Convert XPCollection to List<Order>
-            var dataSource = ordersCollection.Select(order => new orderContent
+
+            if (!int.TryParse(orderId, out int orderIdInt))
             {
-                OrderId = order.Id,
-                Name = order.CustomerName,
-                Price = order.TotalPrice,
-                Date = order.Date,
-                Status = order.Status
-            }).ToList();
+                // Handle invalid orderId input
+                return;
+            }
+
+            // Get order date
+            XPCollection<Order> orders = new XPCollection<Order>(session, new BinaryOperator("Id", orderIdInt));
+            Order order = orders.FirstOrDefault();
+
+            XPQuery<orderList> query = new XPQuery<orderList>(session);
+            List<orderList> orderLists = query.Where(o => o.OrderId == orderIdInt).ToList();
+            List<orderContent> orderContentList = new List<orderContent>();
+
+            orderLists.ForEach(o =>
+            {
+                int bookId = o.BookId;
+                XPCollection<Book> books = new XPCollection<Book>(session, new BinaryOperator("Id", bookId));
+                Book book = books.FirstOrDefault();
+
+                orderContent orderContent = new orderContent
+                {
+                    BookId = bookId,
+                    Name = book.Title,
+                    Price = book.Price,
+                    Quantity = o.Quantity,
+                    Date = order.Date
+                };
+                orderContentList.Add(orderContent);
+            });
 
             // Bind the dataSource to the gridOrders
-            ViewState["DataSource"] = dataSource;
-            gridOrders.DataSource = dataSource;
+            ViewState["DataSource"] = orderContentList;
+            gridOrders.DataSource = orderContentList;
             gridOrders.DataBind();
         }
+
+
+        protected void btnIncrease_Click(object sender, EventArgs e)
+        {
+            Session session = XpoDefault.Session;
+
+            if (session == null)
+            {
+                session = new Session();
+                XpoDefault.Session = session;
+            }
+
+
+            ASPxButton button = sender as ASPxButton;
+            if (button != null)
+            {
+                string orderId = button.CommandArgument;
+              
+
+            if (!int.TryParse(orderId, out int orderIdInt))
+            {
+                // Handle invalid orderId input
+                return;
+            }
+
+            // Fetch the order from the database using orderId
+            var order = session.GetObjectByKey<orderList>(orderIdInt);
+            if (order != null)
+            {
+                order.Quantity += 1; // Increase quantity
+                    session.Save(order);
+            }
+
+                // Rebind the grid to reflect changes
+                BindContentGrid(orderId);
+
+
+            }
+        }
+
+        protected void btnDecrease_Click(object sender, EventArgs e)
+        {
+            Session session = XpoDefault.Session;
+
+            if (session == null)
+            {
+                session = new Session();
+                XpoDefault.Session = session;
+            }
+
+
+            ASPxButton button = sender as ASPxButton;
+            if (button != null)
+            {
+                string orderId = button.CommandArgument;
+
+                if (!int.TryParse(orderId, out int orderIdInt))
+            {
+                // Handle invalid orderId input
+                return;
+            }
+
+            // Fetch the order from the database using orderId
+            var order = session.GetObjectByKey<orderList>(orderIdInt);
+            if (order != null && order.Quantity > 0)
+            {
+                order.Quantity -= 1; // Decrease quantity
+                    session.Save(order);
+            }
+
+                // Rebind the grid to reflect changes
+                BindContentGrid(orderId);
+
+
+            }
+        }
+
 
 
         [Serializable]
@@ -312,15 +430,14 @@ namespace BookSaleFairProject
             public string Status { get; set; }
 
         }
-
         [Serializable]
         public class orderContent
         {
-            public int OrderId { get; set; }
+            public int BookId { get; set; }
             public string Name { get; set; }
             public decimal Price { get; set; }
+            public int Quantity { get; set; }
             public DateTime Date { get; set; }
-            public string Status { get; set; }
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 namespace BookSaleFairProject.DataBase
 {
     [Persistent("orderList")]
-    public class orderList : XPObject
+    public class orderList : XPLiteObject
     {
         public orderList() : base() { }
 

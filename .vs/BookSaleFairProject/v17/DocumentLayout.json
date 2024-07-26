@@ -11,6 +11,10 @@
       "RelativeMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|solutionrelative:booksalefairproject\\homepage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\booksalefairproject\\database\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|solutionrelative:booksalefairproject\\database\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\booksalefairproject\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|solutionrelative:booksalefairproject\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
@@ -65,10 +69,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\booksalefairproject\\forgetpassword\\enteremail.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|solutionrelative:booksalefairproject\\forgetpassword\\enteremail.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\booksalefairproject\\database\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|solutionrelative:booksalefairproject\\database\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A674B7E7-47B0-4919-B524-F9CCD716CB27}|BookSaleFairProject\\BookSaleFairProject.csproj|C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\booksalefairproject\\editbookdata.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -144,7 +144,7 @@
               "RelativeDocumentMoniker": "BookSaleFairProject\\HomePage.aspx.cs",
               "ToolTip": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\HomePage.aspx.cs",
               "RelativeToolTip": "BookSaleFairProject\\HomePage.aspx.cs",
-              "ViewState": "AQIAAHoAAAAAAAAAAAAwwIcAAAAAAAAA",
+              "ViewState": "AQIAAHIBAAAAAAAAAAAgwI0BAABEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-20T20:24:19.642Z",
               "EditorCaption": ""
@@ -159,11 +159,12 @@
               "RelativeToolTip": "BookSaleFairProject\\HomePage.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-07-20T20:21:44.712Z"
+              "WhenOpened": "2024-07-20T20:21:44.712Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ShowOrderContent.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\ShowOrderContent.aspx.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\ShowOrderContent.aspx.cs",
@@ -175,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ShowOrderContent.aspx",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\ShowOrderContent.aspx",
               "RelativeDocumentMoniker": "BookSaleFairProject\\ShowOrderContent.aspx",
@@ -187,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "AddEmployee.aspx",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\AddEmployee.aspx",
               "RelativeDocumentMoniker": "BookSaleFairProject\\AddEmployee.aspx",
@@ -199,15 +200,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 2,
               "Title": "orderList.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\DataBase\\orderList.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\DataBase\\orderList.cs",
               "ToolTip": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\DataBase\\orderList.cs",
               "RelativeToolTip": "BookSaleFairProject\\DataBase\\orderList.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAaAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAAwwAcAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-24T18:46:38.594Z"
+              "WhenOpened": "2024-07-24T18:46:38.594Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -223,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ShowOrders.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\ShowOrders.aspx.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\ShowOrders.aspx.cs",
@@ -235,7 +237,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\DataBase\\Order.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\DataBase\\Order.cs",
@@ -247,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ShowOrders.aspx",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\ShowOrders.aspx",
               "RelativeDocumentMoniker": "BookSaleFairProject\\ShowOrders.aspx",
@@ -271,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "AddEmployee.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\AddEmployee.aspx.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\AddEmployee.aspx.cs",
@@ -319,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Login.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\Login.aspx.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\Login.aspx.cs",
@@ -343,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "AddNewBook.aspx.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\AddNewBook.aspx.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\AddNewBook.aspx.cs",
@@ -355,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\DataBase\\Book.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\DataBase\\Book.cs",
@@ -415,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "EnterEmail.aspx",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\ForgetPassword\\EnterEmail.aspx",
               "RelativeDocumentMoniker": "BookSaleFairProject\\ForgetPassword\\EnterEmail.aspx",
@@ -427,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Login.aspx",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\Login.aspx",
               "RelativeDocumentMoniker": "BookSaleFairProject\\Login.aspx",
@@ -451,7 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Site.master",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\Site.master",
               "RelativeDocumentMoniker": "BookSaleFairProject\\Site.master",
@@ -459,7 +461,8 @@
               "RelativeToolTip": "BookSaleFairProject\\Site.master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-07-20T19:43:46.919Z"
+              "WhenOpened": "2024-07-20T19:43:46.919Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -476,7 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Obaida\\source\\repos\\BookSaleFairProject\\BookSaleFairProject\\DataBase\\User.cs",
               "RelativeDocumentMoniker": "BookSaleFairProject\\DataBase\\User.cs",
