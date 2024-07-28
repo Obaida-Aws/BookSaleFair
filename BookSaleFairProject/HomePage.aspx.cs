@@ -113,9 +113,11 @@ namespace BookSaleFairProject
 
             XPCollection<Order> ordersCollection = new XPCollection<Order>(session);
 
-           
-            ordersCollection.Criteria = CriteriaOperator.Parse("CustomerId = ?", userIdInt);
 
+            var customer = session.Query<Customer>().FirstOrDefault(c => c.UserId == userIdInt);
+
+
+            ordersCollection.Criteria = CriteriaOperator.Parse("CustomerId = ?", customer.Id);
             var dataSource = ordersCollection.Select(order => new Product
             {
                 orderId = order.Id,
@@ -160,12 +162,13 @@ namespace BookSaleFairProject
             {
                 string orderId = button.CommandArgument;
                 orderID = orderId.Trim();
+                ViewState["orderID"] = orderID;
                 BindContentGrid(orderId);
 
                 // Response.Redirect($"ShowOrderContent.aspx?orderId={orderId}");
 
             }
-        //    ASPxPopupContent.Width = Unit.Pixel(800);
+            //    ASPxPopupContent.Width = Unit.Pixel(800);
             ASPxPopupContent.ShowOnPageLoad = true;
         }
 
@@ -336,78 +339,87 @@ namespace BookSaleFairProject
 
         protected void btnIncrease_Click(object sender, EventArgs e)
         {
-            Session session = XpoDefault.Session;
+            InitializeSession(); // Ensure the session is initialized
 
-            if (session == null)
+            // Fetch the orderID from ViewState
+            if (ViewState["orderID"] != null)
             {
-                session = new Session();
-                XpoDefault.Session = session;
+                orderID = ViewState["orderID"].ToString();
+
+                ASPxButton button = sender as ASPxButton;
+                if (button != null)
+                {
+                    string bookIdStr = button.CommandArgument;
+                    if (int.TryParse(bookIdStr, out int bookId))
+                    {
+                        // Fetch the order content from the database using bookId and orderID
+                        var orderContent = _session.Query<orderList>().FirstOrDefault(o => o.BookId == bookId && o.OrderId == int.Parse(orderID));
+                        if (orderContent != null && orderContent.Quantity > 0)
+                        {
+                            orderContent.Quantity += 1; // Increase quantity
+                            _session.Save(orderContent);
+                        }
+
+                        // Rebind the grid to reflect changes
+                        BindContentGrid(orderID);
+                    }
+                    else
+                    {
+                        // Log or handle the case where bookIdStr is not a valid integer
+                        Response.Write("Invalid bookId");
+                    }
+                }
             }
-
-
-            ASPxButton button = sender as ASPxButton;
-            if (button != null)
+            else
             {
-                string orderId = button.CommandArgument;
-              
-
-            if (!int.TryParse(orderId, out int orderIdInt))
-            {
-                // Handle invalid orderId input
-                return;
-            }
-
-            // Fetch the order from the database using orderId
-            var order = session.GetObjectByKey<orderList>(orderIdInt);
-            if (order != null)
-            {
-                order.Quantity += 1; // Increase quantity
-                    session.Save(order);
-            }
-
-                // Rebind the grid to reflect changes
-                BindContentGrid(orderId);
-
-
+                // Log or handle the case where orderID is not set
+                Response.Write("orderID is null or empty");
             }
         }
+
+
 
         protected void btnDecrease_Click(object sender, EventArgs e)
         {
-            Session session = XpoDefault.Session;
+            InitializeSession(); // Ensure the session is initialized
 
-            if (session == null)
+            // Fetch the orderID from ViewState
+            if (ViewState["orderID"] != null)
             {
-                session = new Session();
-                XpoDefault.Session = session;
+                orderID = ViewState["orderID"].ToString();
+
+                ASPxButton button = sender as ASPxButton;
+                if (button != null)
+                {
+                    string bookIdStr = button.CommandArgument;
+                    if (int.TryParse(bookIdStr, out int bookId))
+                    {
+                        // Fetch the order content from the database using bookId and orderID
+                        var orderContent = _session.Query<orderList>().FirstOrDefault(o => o.BookId == bookId && o.OrderId == int.Parse(orderID));
+                        if (orderContent != null && orderContent.Quantity > 0)
+                        {
+                            orderContent.Quantity -= 1; // Decrease quantity
+                            _session.Save(orderContent);
+                        }
+
+                        // Rebind the grid to reflect changes
+                        BindContentGrid(orderID);
+                    }
+                    else
+                    {
+                        // Log or handle the case where bookIdStr is not a valid integer
+                        Response.Write("Invalid bookId");
+                    }
+                }
             }
-
-
-            ASPxButton button = sender as ASPxButton;
-            if (button != null)
+            else
             {
-                string orderId = button.CommandArgument;
-
-                if (!int.TryParse(orderId, out int orderIdInt))
-            {
-                // Handle invalid orderId input
-                return;
-            }
-
-            // Fetch the order from the database using orderId
-            var order = session.GetObjectByKey<orderList>(orderIdInt);
-            if (order != null && order.Quantity > 0)
-            {
-                order.Quantity -= 1; // Decrease quantity
-                    session.Save(order);
-            }
-
-                // Rebind the grid to reflect changes
-                BindContentGrid(orderId);
-
-
+                // Log or handle the case where orderID is not set
+                Response.Write("orderID is null or empty");
             }
         }
+
+
 
 
 

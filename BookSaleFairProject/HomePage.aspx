@@ -236,9 +236,9 @@
                                     <dx:GridViewDataTextColumn FieldName="Quantity" Caption="Quantity">
                                         <DataItemTemplate>
                                             <div class="quantity-controls">
-                                                <dx:ASPxButton runat="server" Text="-" OnClick="btnDecrease_Click" CssClass="quantity-button" />
+                                                <dx:ASPxButton runat="server" Text="-" OnClick="btnDecrease_Click" CommandArgument='<%# Eval("BookId") %>' CssClass="quantity-button" />
                                                 <dx:ASPxLabel runat="server" Text='<%# Eval("Quantity") %>' CssClass="quantity-label" />
-                                                <dx:ASPxButton runat="server" Text="+" OnClick="btnIncrease_Click" CssClass="quantity-button" />
+                                                <dx:ASPxButton runat="server" Text="+" OnClick="btnIncrease_Click" CommandArgument='<%# Eval("BookId") %>' CssClass="quantity-button" />
                                             </div>
                                         </DataItemTemplate>
                                     </dx:GridViewDataTextColumn>
