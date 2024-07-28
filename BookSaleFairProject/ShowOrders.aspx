@@ -52,7 +52,7 @@
     <dx:ASPxPanel ID="ASPxPanel1" runat="server" CssClass="panel-container">
         <PanelCollection>
             <dx:PanelContent>
-                <dx:ASPxGridView ID="gridOrders" runat="server" AutoGenerateColumns="False" KeyFieldName="OrderId">
+                <dx:ASPxGridView ID="gridOrders" runat="server" AutoGenerateColumns="False" KeyFieldName="OrderId"  OnHtmlRowPrepared="gridOrders_HtmlRowPrepared">
                     <Columns>
                         <dx:GridViewDataTextColumn FieldName="OrderId" Caption="Order Id" />
                         <dx:GridViewDataTextColumn FieldName="Name" Caption="Customer Name" />
@@ -61,8 +61,8 @@
 
                         <dx:GridViewDataCheckColumn Caption="Actions">
                             <DataItemTemplate>
-                                <dx:ASPxButton runat="server" Text="Accept" OnClick="btnAccept_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
-                                <dx:ASPxButton runat="server" Text="Reject" OnClick="btnReject_Click" ClientInstanceName="btnAction" CssClass="plain-text-button2" />
+                                <dx:ASPxButton runat="server" ID="Accept" Text="Accept" OnClick="btnAccept_Click" Visible="true" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+                                <dx:ASPxButton runat="server" ID="Reject" Text="Reject" OnClick="btnReject_Click" Visible="true" ClientInstanceName="btnAction" CssClass="plain-text-button2" />
                             </DataItemTemplate>
                         </dx:GridViewDataCheckColumn>
                     </Columns>

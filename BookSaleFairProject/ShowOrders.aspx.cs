@@ -23,13 +23,11 @@ namespace BookSaleFairProject
         protected void btnAccept_Click(object sender, EventArgs e)
         {
             // Handle accept button click
-            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
         {
             // Handle reject button click
-            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
         }
 
         protected void BindBooksGrid()
@@ -43,9 +41,7 @@ namespace BookSaleFairProject
             }
 
             XPCollection<Order> ordersCollection = new XPCollection<Order>(session);
-    
 
-            // Convert XPCollection to List<Order>
             var dataSource = ordersCollection.Select(order => new myOrder
             {
                 OrderId = order.Id,
@@ -55,10 +51,43 @@ namespace BookSaleFairProject
                 Status = order.Status
             }).ToList();
 
-            // Bind the dataSource to the gridOrders
             ViewState["DataSource"] = dataSource;
             gridOrders.DataSource = dataSource;
             gridOrders.DataBind();
+        }
+
+        protected void gridOrders_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridViewTableRowEventArgs e)
+        {
+            if (e.RowType != DevExpress.Web.GridViewRowType.Data)
+                return;
+
+            var status = e.GetValue("Status")?.ToString();
+
+            var acceptButton = gridOrders.FindRowCellTemplateControl(e.VisibleIndex, null, "Accept") as ASPxButton;
+            var rejectButton = gridOrders.FindRowCellTemplateControl(e.VisibleIndex, null, "Reject") as ASPxButton;
+
+            if (status == "Accepted")
+            {
+                if (acceptButton != null)
+                {
+                    acceptButton.Visible = false;
+                }
+                if (rejectButton != null)
+                {
+                    rejectButton.Visible = false;
+                }
+            }
+            else if (status == "Rejected")
+            {
+                if (rejectButton != null)
+                {
+                    rejectButton.Visible = false;
+                }
+                if (acceptButton != null)
+                {
+                    acceptButton.Visible = false;
+                }
+            }
         }
     }
 
