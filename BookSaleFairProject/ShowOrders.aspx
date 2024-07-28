@@ -61,8 +61,8 @@
 
                         <dx:GridViewDataCheckColumn Caption="Actions">
                             <DataItemTemplate>
-                                <dx:ASPxButton runat="server" ID="Accept" Text="Accept" OnClick="btnAccept_Click" Visible="true" ClientInstanceName="btnAction" CssClass="plain-text-button" />
-                                <dx:ASPxButton runat="server" ID="Reject" Text="Reject" OnClick="btnReject_Click" Visible="true" ClientInstanceName="btnAction" CssClass="plain-text-button2" />
+                                <dx:ASPxButton runat="server" ID="Accept" Text="Accept" CommandArgument='<%# Eval("OrderId") %>' OnClick="btnAccept_Click" Visible="true" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+                                <dx:ASPxButton runat="server" ID="Reject" Text="Reject" CommandArgument='<%# Eval("OrderId") %>' OnClick="btnReject_Click" Visible="true" ClientInstanceName="btnAction" CssClass="plain-text-button2" />
                             </DataItemTemplate>
                         </dx:GridViewDataCheckColumn>
                     </Columns>

@@ -22,13 +22,21 @@ namespace BookSaleFairProject
 
         protected void btnAccept_Click(object sender, EventArgs e)
         {
-            // Handle accept button click
+            ASPxButton btn = sender as ASPxButton;
+            int orderId = int.Parse(btn.CommandArgument);
+            UpdateOrderStatus(orderId, "Accepted");
+            BindBooksGrid(); // Refresh the grid to reflect the changes
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
         {
-            // Handle reject button click
+            ASPxButton btn = sender as ASPxButton;
+            int orderId = int.Parse(btn.CommandArgument);
+            UpdateOrderStatus(orderId, "Rejected");
+            BindBooksGrid();
         }
+
+
 
         protected void BindBooksGrid()
         {
@@ -54,6 +62,24 @@ namespace BookSaleFairProject
             ViewState["DataSource"] = dataSource;
             gridOrders.DataSource = dataSource;
             gridOrders.DataBind();
+        }
+
+        protected void UpdateOrderStatus(int orderId, string newStatus)
+        {
+            Session session = XpoDefault.Session;
+            if (session == null)
+            {
+                session = new Session();
+                XpoDefault.Session = session;
+            }
+
+            Order order = session.GetObjectByKey<Order>(orderId);
+            if (order != null)
+            {
+                order.Status = newStatus;
+                order.Save();
+                session.Save(order);
+            }
         }
 
         protected void gridOrders_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridViewTableRowEventArgs e)

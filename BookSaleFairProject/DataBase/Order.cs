@@ -42,9 +42,10 @@ namespace BookSaleFairProject.DataBase
         [Persistent("customerId")]
         public int CustomerId
         {
-            get { return CustomerId; }
-            set { SetPropertyValue(nameof(TotalPrice), ref customerId, value); }
+            get { return customerId; }
+            set { SetPropertyValue(nameof(CustomerId), ref customerId, value); }
         }
+
 
 
         private string customerName;
@@ -68,7 +69,7 @@ namespace BookSaleFairProject.DataBase
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            
+
         }
 
 
