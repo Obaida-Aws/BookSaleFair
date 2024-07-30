@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace BookSaleFairProject
 {
     public partial class HomePage : System.Web.UI.Page
@@ -20,55 +21,62 @@ namespace BookSaleFairProject
         {
             if (!IsPostBack)
             {
-              //  BindContentGrid();
-                // Check if username is provided in the query string
+
                 if (Request.QueryString["userId"] != null)
                 {
                     string userId = Request.QueryString["userId"];
-                    // lblWelcomeMessage.Text = $"Welcome, {username}!";
+
                     string userType = Request.QueryString["userType"];
 
-                    // Check if userType is "user" to show the button
+
                     if (userType == "user")
                     {
                         ASPxButton2.Visible = false;
                         ASPxButton1.Visible = true;
+                        ASPxButton4.Visible = true;
                         btnAdd.Visible = false;
-                    //    btnDelete.Visible = false;
+
+                        ;
 
 
-                    }else if(userType == "admin")
+
+                    }
+                    else if (userType == "admin")
                     {
                         ASPxButton3.Visible = true;
                         ASPxButton1.Visible = false;
+                        ASPxButton4.Visible = false;
                     }
                     else
                     {
                         ASPxButton2.Visible = true;
                         ASPxButton1.Visible = false;
                         btnAdd.Visible = true;
+                        ASPxButton4.Visible = false;
                     }
                 }
 
-                // Bind the main grid and other initializations
+
                 BindBooksGrid();
                 popupCart.ShowOnPageLoad = false;
                 ASPxPopupContent.ShowOnPageLoad = false;
-                BindPopupGrid(Request.QueryString["userId"]); // Assuming this is for initializing popup grid data
-
+                BindPopupGrid(Request.QueryString["userId"]);
             }
         }
 
-        // when i delete from Order table should i also delete from orderList table ....
+
+
+
+
+
 
         protected void btnActionDelete_Click(object sender, EventArgs e)
         {
-            // Determine the row index of the button clicked
             var button = (sender as ASPxButton);
             var container = button.NamingContainer as GridViewDataItemTemplateContainer;
             int visibleIndex = container.VisibleIndex;
 
-            
+
             List<Product> dataSource = ViewState["DataSource"] as List<Product>;
             int orderId = dataSource[visibleIndex].orderId;
 
@@ -89,17 +97,58 @@ namespace BookSaleFairProject
 
 
 
-        protected void btnAccept_Click(object sender, EventArgs e)
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
-            // Handle accept button click
-            // Example: You can access the OrderId using gridOrders.GetRowValues and perform your logic
         }
+
+        protected void ASPxCreate_Click(object sender, EventArgs e)
+        {
+            
+            int customerId = (int?)ViewState["CustomerId"] ?? 0;
+            string customerName = ViewState["FirstCustomerName"] as string;
+
+            if (customerId == 0 || string.IsNullOrEmpty(customerName))
+            {
+                Response.Write("Customer information is not available.");
+                return;
+            }
+
+            
+            Session session = XpoDefault.Session;
+            if (session == null)
+            {
+                session = new Session();
+                XpoDefault.Session = session;
+            }
+
+           
+            Order newOrder = new Order(session)
+            {
+                CustomerId = customerId,
+                CustomerName = customerName, 
+                TotalPrice = 0, 
+                Status = "Pending", 
+                Date = DateTime.Now 
+            };
+
+            session.Save(newOrder);
+          //  session.CommitTransaction(); 
+
+            
+            Response.Redirect(Request.RawUrl); 
+        }
+
+
+
+
+
+
         protected void BindPopupGrid(string userId)
         {
             int userIdInt;
             if (!int.TryParse(userId, out userIdInt))
             {
-           
+
                 return;
             }
 
@@ -116,20 +165,41 @@ namespace BookSaleFairProject
 
             var customer = session.Query<Customer>().FirstOrDefault(c => c.UserId == userIdInt);
 
-
-            ordersCollection.Criteria = CriteriaOperator.Parse("CustomerId = ?", customer.Id);
-            var dataSource = ordersCollection.Select(order => new Product
+            if (customer != null)
             {
-                orderId = order.Id,
-                Price = order.TotalPrice,
-                Date = order.Date,
-                Status = order.Status
-            }).ToList();
+                // Store customer information in ViewState
+                ViewState["CustomerId"] = customer.Id;
+               
 
 
-            ViewState["DataSource"] = dataSource;
-            gridProducts.DataSource = dataSource;
-            gridProducts.DataBind();
+                ordersCollection.Criteria = CriteriaOperator.Parse("CustomerId = ?", customer.Id);
+                var dataSource = ordersCollection.Select(order => new Product
+                {
+                    orderId = order.Id,
+                    Price = order.TotalPrice,
+                    Date = order.Date,
+                    Status = order.Status,
+                    CustomerName = order.CustomerName
+                }).ToList();
+
+
+                // Store all CustomerNames in ViewState
+                var customerNames = dataSource.Select(p => p.CustomerName).Distinct().ToList();
+                ViewState["CustomerNames"] = customerNames;
+
+                // Store the first CustomerName in a separate ViewState
+                if (customerNames.Any())
+                {
+                    ViewState["FirstCustomerName"] = customerNames.First();
+                }
+
+
+
+
+                ViewState["DataSource"] = dataSource;
+                gridProducts.DataSource = dataSource;
+                gridProducts.DataBind();
+            }
         }
 
 
@@ -137,12 +207,11 @@ namespace BookSaleFairProject
         {
             if (e.ButtonID == "Cancel")
             {
-                popupCart.ShowOnPageLoad = false; 
+                popupCart.ShowOnPageLoad = false;
             }
         }
 
-        // to delete one of my orders from the first popup
- 
+
 
 
         protected void ASPxok1_Click(object sender, EventArgs e)
@@ -165,7 +234,7 @@ namespace BookSaleFairProject
                 ViewState["orderID"] = orderID;
                 BindContentGrid(orderId);
 
-                // Response.Redirect($"ShowOrderContent.aspx?orderId={orderId}");
+
 
             }
             //    ASPxPopupContent.Width = Unit.Pixel(800);
@@ -205,7 +274,7 @@ namespace BookSaleFairProject
         {
             int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
 
-            
+
             Response.Redirect($"EditBookData.aspx?index={index}");
         }
 
@@ -219,7 +288,7 @@ namespace BookSaleFairProject
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
-            
+
             var dataSource = ViewState["DataSource"] as List<CardData>;
             int bookIdToDelete = dataSource[index].ID;
 
@@ -246,9 +315,9 @@ namespace BookSaleFairProject
 
             XPCollection<Book> booksCollection;
 
-            if (string.IsNullOrEmpty(bookType)|| bookType=="All")
+            if (string.IsNullOrEmpty(bookType) || bookType == "All")
             {
-              
+
                 booksCollection = new XPCollection<Book>(session);
             }
             else
@@ -256,7 +325,6 @@ namespace BookSaleFairProject
                 booksCollection = new XPCollection<Book>(session, CriteriaOperator.Parse("Type = ?", bookType));
             }
 
-            // Convert XPCollection to List<CardData>
             var dataSource = booksCollection.Select(book => new CardData
             {
                 ID = book.Id,
@@ -272,7 +340,6 @@ namespace BookSaleFairProject
             ASPxCardView1.DataBind();
         }
 
-        // from OOMM
         private void InitializeSession()
         {
             _session = XpoDefault.Session;
@@ -301,11 +368,9 @@ namespace BookSaleFairProject
 
             if (!int.TryParse(orderId, out int orderIdInt))
             {
-                // Handle invalid orderId input
                 return;
             }
 
-            // Get order date
             XPCollection<Order> orders = new XPCollection<Order>(session, new BinaryOperator("Id", orderIdInt));
             Order order = orders.FirstOrDefault();
 
@@ -330,7 +395,6 @@ namespace BookSaleFairProject
                 orderContentList.Add(orderContent);
             });
 
-            // Bind the dataSource to the gridOrders
             ViewState["DataSource"] = orderContentList;
             gridOrders.DataSource = orderContentList;
             gridOrders.DataBind();
@@ -339,9 +403,8 @@ namespace BookSaleFairProject
 
         protected void btnIncrease_Click(object sender, EventArgs e)
         {
-            InitializeSession(); // Ensure the session is initialized
+            InitializeSession();
 
-            // Fetch the orderID from ViewState
             if (ViewState["orderID"] != null)
             {
                 orderID = ViewState["orderID"].ToString();
@@ -352,27 +415,24 @@ namespace BookSaleFairProject
                     string bookIdStr = button.CommandArgument;
                     if (int.TryParse(bookIdStr, out int bookId))
                     {
-                        // Fetch the order content from the database using bookId and orderID
                         var orderContent = _session.Query<orderList>().FirstOrDefault(o => o.BookId == bookId && o.OrderId == int.Parse(orderID));
                         if (orderContent != null && orderContent.Quantity > 0)
                         {
-                            orderContent.Quantity += 1; // Increase quantity
+                            orderContent.Quantity += 1;
                             _session.Save(orderContent);
                         }
 
-                        // Rebind the grid to reflect changes
                         BindContentGrid(orderID);
                     }
                     else
                     {
-                        // Log or handle the case where bookIdStr is not a valid integer
                         Response.Write("Invalid bookId");
                     }
                 }
             }
             else
             {
-                // Log or handle the case where orderID is not set
+
                 Response.Write("orderID is null or empty");
             }
         }
@@ -381,9 +441,8 @@ namespace BookSaleFairProject
 
         protected void btnDecrease_Click(object sender, EventArgs e)
         {
-            InitializeSession(); // Ensure the session is initialized
+            InitializeSession();
 
-            // Fetch the orderID from ViewState
             if (ViewState["orderID"] != null)
             {
                 orderID = ViewState["orderID"].ToString();
@@ -394,27 +453,24 @@ namespace BookSaleFairProject
                     string bookIdStr = button.CommandArgument;
                     if (int.TryParse(bookIdStr, out int bookId))
                     {
-                        // Fetch the order content from the database using bookId and orderID
                         var orderContent = _session.Query<orderList>().FirstOrDefault(o => o.BookId == bookId && o.OrderId == int.Parse(orderID));
                         if (orderContent != null && orderContent.Quantity > 0)
                         {
-                            orderContent.Quantity -= 1; // Decrease quantity
+                            orderContent.Quantity -= 1;
                             _session.Save(orderContent);
                         }
 
-                        // Rebind the grid to reflect changes
                         BindContentGrid(orderID);
                     }
                     else
                     {
-                        // Log or handle the case where bookIdStr is not a valid integer
                         Response.Write("Invalid bookId");
                     }
                 }
             }
             else
             {
-                // Log or handle the case where orderID is not set
+
                 Response.Write("orderID is null or empty");
             }
         }
@@ -440,6 +496,7 @@ namespace BookSaleFairProject
             public decimal Price { get; set; }
             public DateTime Date { get; set; }
             public string Status { get; set; }
+            public string CustomerName { get; set; }
 
         }
         [Serializable]

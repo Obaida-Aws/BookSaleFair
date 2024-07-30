@@ -86,18 +86,24 @@
             box-sizing: border-box;
         }
 
-            .Search1::placeholder {
-                color: #aaa;
-            }
+        .MyButton {
+            border-radius: 25px;
+            outline: none;
+            box-sizing: border-box;
+        }
 
-            .Search1:hover {
-                border-color: #999;
-            }
+        .Search1::placeholder {
+            color: #aaa;
+        }
 
-            .Search1:focus {
-                border-color: #66afe9;
-                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-            }
+        .Search1:hover {
+            border-color: #999;
+        }
+
+        .Search1:focus {
+            border-color: #66afe9;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
 
         .button-style {
             border-radius: 25px;
@@ -246,7 +252,7 @@
 
                                     <dx:GridViewDataCheckColumn Caption="Actions">
                                         <DataItemTemplate>
-                                            <dx:ASPxButton runat="server" Text="Cancel" OnClick="btnAccept_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+                                            <dx:ASPxButton runat="server" Text="Cancel" OnClick="btnCancel_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
 
                                         </DataItemTemplate>
                                     </dx:GridViewDataCheckColumn>
@@ -271,9 +277,11 @@
                         <dx:MenuItem Text="Logout" NavigateUrl="Login.aspx" />
                     </Items>
                 </dx:ASPxMenu>
-                <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Cart" OnClick="ASPxok1_Click" Visible="true"></dx:ASPxButton>
-                <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Show Orders" OnClick="ASPxorder1_Click" Visible="true"></dx:ASPxButton>
-                <dx:ASPxButton ID="ASPxButton3" runat="server" Text="Add New Employee" OnClick="ASPEmp1_Click" Visible="false"></dx:ASPxButton>
+                <dx:ASPxButton ID="ASPxButton1" runat="server" Text="My Orders" OnClick="ASPxok1_Click" Visible="true" CssClass="MyButton"></dx:ASPxButton>
+                <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Show Orders" OnClick="ASPxorder1_Click" Visible="true" CssClass="MyButton"></dx:ASPxButton>
+                <dx:ASPxButton ID="ASPxButton3" runat="server" Text="Add New Employee" OnClick="ASPEmp1_Click" Visible="false" CssClass="MyButton"></dx:ASPxButton>
+                 <dx:ASPxButton ID="ASPxButton4" runat="server" Text="Create New Order" OnClick="ASPxCreate_Click" Visible="true" CssClass="MyButton"></dx:ASPxButton>
+
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>
@@ -312,7 +320,7 @@
         </PanelCollection>
     </dx:ASPxPanel>
 
-    <dx:ASPxCardView ID="ASPxCardView1" runat="server" Width="100%" CssClass="myCards">
+    <dx:ASPxCardView ID="ASPxCardView1" runat="server" Width="100%" CssClass="myCards"  >
         <Columns>
             <dx:CardViewColumn Caption="" VisibleIndex="1">
                 <DataItemTemplate>
@@ -331,7 +339,7 @@
                         <dx:ASPxButton ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" CommandArgument='<%# Container.VisibleIndex %>' Visible="true" />
                     </div>
                 </DataItemTemplate>
-            </dx:CardViewColumn>
+            </dx:CardViewColumn>    
         </Columns>
     </dx:ASPxCardView>
 </asp:Content>
