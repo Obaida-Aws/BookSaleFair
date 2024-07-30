@@ -138,6 +138,102 @@ namespace BookSaleFairProject
             Response.Redirect(Request.RawUrl); 
         }
 
+        // for Buy button to add to the orderList table
+        protected void btnBuy_Click(object sender, EventArgs e)
+        {
+            var button = sender as ASPxButton;
+            if (button == null)
+                return;
+
+            int index;
+            if (!int.TryParse(button.CommandArgument, out index))
+            {
+                Response.Write("Invalid item index.");
+                return;
+            }
+
+            // Retrieve the data source from ViewState
+            var dataSource = ViewState["DataSource"] as List<CardData>; // Changed to CardData which includes BookId
+            if (dataSource == null || index < 0 || index >= dataSource.Count)
+            {
+                Response.Write("Data source is not available or index is out of range.");
+                return;
+            }
+
+            var selectedProduct = dataSource[index];
+
+            // Retrieve the order ID from ViewState, or fetch the latest one from the database
+            string orderID = ViewState["orderID"] as string;
+            if (string.IsNullOrEmpty(orderID))
+            {
+                Session session = XpoDefault.Session;
+                if (session == null)
+                {
+                    session = new Session();
+                    XpoDefault.Session = session;
+                }
+
+                // Fetch the latest order ID from the database
+                var sql = "SELECT MAX(Id) FROM dbo.Orders";
+                var lastOrderId = session.ExecuteScalar(sql);
+                if (lastOrderId != null)
+                {
+                    orderID = lastOrderId.ToString();
+                    ViewState["orderID"] = orderID;
+                }
+                else
+                {
+                    Response.Write("Failed to retrieve the latest order ID.");
+                    return;
+                }
+            }
+
+            // Ensure the orderID is still valid
+            if (string.IsNullOrEmpty(orderID))
+            {
+                Response.Write("Order ID is not available.");
+                return;
+            }
+
+            // Ensure the BookId exists in the Books table
+            Session checkSession = XpoDefault.Session;
+            if (checkSession == null)
+            {
+                checkSession = new Session();
+                XpoDefault.Session = checkSession;
+            }
+
+            bool bookExists = checkSession.Query<Book>().Any(b => b.Id == selectedProduct.ID); // Use BookId from CardData
+            if (!bookExists)
+            {
+                Response.Write("The book ID does not exist.");
+                return;
+            }
+
+            // Create a new orderList entry
+            orderList newOrderListEntry = new orderList(XpoDefault.Session)
+            {
+                BookId = selectedProduct.ID,  // Use correct BookId
+                OrderId = int.Parse(orderID),
+                Quantity = 1
+            };
+
+            try
+            {
+                XpoDefault.Session.Save(newOrderListEntry);
+                XpoDefault.Session.CommitTransaction();
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("An error occurred while saving the order: " + ex.Message);
+            }
+        }
+
+
+
+
+
 
 
 
