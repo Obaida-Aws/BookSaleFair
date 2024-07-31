@@ -18,7 +18,7 @@ namespace BookSaleFairProject
         protected void cites_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Update the selected location label
-          //  lblSelectedLocation.Text = "Selected Location: " + gender.SelectedItem.Text;
+            //  lblSelectedLocation.Text = "Selected Location: " + gender.SelectedItem.Text;
 
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -75,18 +75,28 @@ namespace BookSaleFairProject
                     string type = "user";
                     string gender = genders.SelectedItem?.Text;
 
+                    // Hash the password
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
                     User newUser = new User(session)
-                    {                        
+                    {
                         FirstName = firstName,
                         LastName = lastName,
                         Type = type,
                         Username = username,
-                        Password = password,
+                        Password = hashedPassword,
                         Email = email,
                         Gender = gender,
                     };
 
+                    Customer newCustomer = new Customer(session)
+                    {
+                        UserId = newUser.Id,
+                    };
+
                     session.Save(newUser);
+                    session.Save(newCustomer);
+
                     Response.Redirect("Login.aspx");
 
                 }

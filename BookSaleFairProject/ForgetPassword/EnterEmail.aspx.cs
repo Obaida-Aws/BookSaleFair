@@ -24,18 +24,17 @@ namespace BookSaleFairProject.ForgetPassword
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text.Trim();
+            string username = txtEmail.Text.Trim();
             using (UnitOfWork uow = new UnitOfWork())
             {
-                var user = uow.FindObject<User>(CriteriaOperator.Parse("Email = ?", email));
+                var user = uow.FindObject<User>(CriteriaOperator.Parse("Username = ? And Email = ?", username, email));
                 if (user != null)
                 {
-                    // Generate a unique verification code
                     string verificationCode = new Random().Next(100000, 999999).ToString();
                     user.PasswordResetToken = verificationCode;
                     user.PasswordResetTokenExpiry = DateTime.Now.AddMinutes(2); // Code valid for 10 minutes
                     uow.CommitChanges();
 
-                    // Send email with verification code
                     SendVerificationCodeEmail(user.Email, verificationCode);
                     Response.Redirect("EnterVerificationCode.aspx");
                 }
@@ -49,7 +48,6 @@ namespace BookSaleFairProject.ForgetPassword
 
         private void SendVerificationCodeEmail(string email, string code)
         {
-            //string resetLink = Request.Url.GetLeftPart(UriPartial.Authority) + "/ResetPassword.aspx?token=" + token;
 
             try
             {
@@ -71,7 +69,7 @@ namespace BookSaleFairProject.ForgetPassword
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Error: {ex.Message}");
+                
                 Response.Write($"Error: {ex.Message}");
             }
         }

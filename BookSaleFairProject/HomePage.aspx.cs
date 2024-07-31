@@ -17,14 +17,16 @@ namespace BookSaleFairProject
 
         private Session _session;
         public string orderID;
+        public string createdOrderId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+          //  if (!IsPostBack)
+          //  {
 
                 if (Request.QueryString["userId"] != null)
                 {
                     string userId = Request.QueryString["userId"];
+                    GetFirstName(userId);
 
                     string userType = Request.QueryString["userType"];
 
@@ -61,7 +63,7 @@ namespace BookSaleFairProject
                 popupCart.ShowOnPageLoad = false;
                 ASPxPopupContent.ShowOnPageLoad = false;
                 BindPopupGrid(Request.QueryString["userId"]);
-            }
+           // }
         }
 
 
@@ -103,7 +105,6 @@ namespace BookSaleFairProject
 
         protected void ASPxCreate_Click(object sender, EventArgs e)
         {
-            
             int customerId = (int?)ViewState["CustomerId"] ?? 0;
             string customerName = ViewState["FirstCustomerName"] as string;
 
@@ -113,34 +114,56 @@ namespace BookSaleFairProject
                 return;
             }
 
-            
-            Session session = XpoDefault.Session;
-            if (session == null)
+            try
             {
-                session = new Session();
-                XpoDefault.Session = session;
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    // Create a new Order object
+                    Order newOrder = new Order(uow)
+                    {
+                        CustomerId = customerId,
+                        CustomerName = customerName,
+                        TotalPrice = 0,
+                        Status = "Pending",
+                        Date = DateTime.Now
+                    };
+
+                    // Save the new order
+                    uow.Save(newOrder);
+
+                    // Commit the transaction
+                    uow.CommitChanges();
+
+                    // Retrieve the ID of the newly inserted order
+                    int newOrderId = newOrder.Id;
+
+                    // Store the OrderId in Session for later use
+                    Session["createdOrderId"] = newOrderId;
+
+                    // Redirect to the same page to reflect the changes
+                    Response.Redirect(Request.RawUrl);
+                }
             }
-
-           
-            Order newOrder = new Order(session)
+            catch (Exception ex)
             {
-                CustomerId = customerId,
-                CustomerName = customerName, 
-                TotalPrice = 0, 
-                Status = "Pending", 
-                Date = DateTime.Now 
-            };
-
-            session.Save(newOrder);
-          //  session.CommitTransaction(); 
-
-            
-            Response.Redirect(Request.RawUrl); 
+                Response.Write("An error occurred while creating the order: " + ex.Message);
+            }
         }
+
 
         // for Buy button to add to the orderList table
         protected void btnBuy_Click(object sender, EventArgs e)
         {
+            createdOrderId = Session["createdOrderId"]?.ToString();
+
+            if (string.IsNullOrEmpty(createdOrderId))
+            {
+                Response.Write("Order ID is not available.");
+                return;
+            }
+
+            Response.Write("new order id -----" + createdOrderId);
+
             var button = sender as ASPxButton;
             if (button == null)
                 return;
@@ -152,8 +175,10 @@ namespace BookSaleFairProject
                 return;
             }
 
-            // Retrieve the data source from ViewState
-            var dataSource = ViewState["DataSource"] as List<CardData>; // Changed to CardData which includes BookId
+            var dataSource = ViewState["CardsData"] as List<CardData>;
+
+            Response.Write($"DataSource count: {dataSource?.Count}, Index: {index}");
+
             if (dataSource == null || index < 0 || index >= dataSource.Count)
             {
                 Response.Write("Data source is not available or index is out of range.");
@@ -162,71 +187,107 @@ namespace BookSaleFairProject
 
             var selectedProduct = dataSource[index];
 
-            // Retrieve the order ID from ViewState, or fetch the latest one from the database
-            string orderID = ViewState["orderID"] as string;
-            if (string.IsNullOrEmpty(orderID))
-            {
-                Session session = XpoDefault.Session;
-                if (session == null)
-                {
-                    session = new Session();
-                    XpoDefault.Session = session;
-                }
-
-                // Fetch the latest order ID from the database
-                var sql = "SELECT MAX(Id) FROM dbo.Orders";
-                var lastOrderId = session.ExecuteScalar(sql);
-                if (lastOrderId != null)
-                {
-                    orderID = lastOrderId.ToString();
-                    ViewState["orderID"] = orderID;
-                }
-                else
-                {
-                    Response.Write("Failed to retrieve the latest order ID.");
-                    return;
-                }
-            }
-
-            // Ensure the orderID is still valid
-            if (string.IsNullOrEmpty(orderID))
-            {
-                Response.Write("Order ID is not available.");
-                return;
-            }
-
-            // Ensure the BookId exists in the Books table
-            Session checkSession = XpoDefault.Session;
-            if (checkSession == null)
-            {
-                checkSession = new Session();
-                XpoDefault.Session = checkSession;
-            }
-
-            bool bookExists = checkSession.Query<Book>().Any(b => b.Id == selectedProduct.ID); // Use BookId from CardData
-            if (!bookExists)
-            {
-                Response.Write("The book ID does not exist.");
-                return;
-            }
-
-            // Create a new orderList entry
-            orderList newOrderListEntry = new orderList(XpoDefault.Session)
-            {
-                BookId = selectedProduct.ID,  // Use correct BookId
-                OrderId = int.Parse(orderID),
-                Quantity = 1
-            };
-
             try
             {
-                XpoDefault.Session.Save(newOrderListEntry);
-                XpoDefault.Session.CommitTransaction();
-                Response.Redirect(Request.RawUrl);
+                // Ensure the session is properly initialized
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    // Log session state before the operation
+                    Response.Write($"Session state before operation: {uow?.Connection?.State}");
+
+                    // Refine the criteria query
+                    CriteriaOperator criteria = new BinaryOperator("Id", selectedProduct.ID);
+                    XPCollection<Book> booksCollection = new XPCollection<Book>(uow, criteria);
+                    bool bookExists = booksCollection.Count > 0;
+
+                    if (!bookExists)
+                    {
+                        Response.Write("The book ID does not exist.");
+                        return;
+                    }
+
+                    // Log session state after the query
+                    Response.Write($"Session state after query: {uow?.Connection?.State}");
+
+                    // Create a new orderList entry
+                    orderList newOrderListEntry = new orderList(uow)
+                    {
+                        BookId = selectedProduct.ID,
+                        OrderId = int.Parse(createdOrderId),
+                        Quantity = 1
+                    };
+
+                    // Log object state before saving
+                    Response.Write($"OrderListEntry state: {newOrderListEntry.BookId}, {newOrderListEntry.OrderId}, {newOrderListEntry.Quantity}");
+
+                    uow.Save(newOrderListEntry);
+
+                    // Log before committing the transaction
+                    Response.Write($"Session state before committing transaction: {uow?.Connection?.State}");
+
+                    uow.CommitChanges();
+
+                    // Log after committing the transaction
+                    Response.Write($"Session state after committing transaction: {uow?.Connection?.State}");
+
+                    Response.Redirect(Request.RawUrl);
+                }
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                Response.Write("InvalidOperationException occurred while saving the order: " + ex.Message);
+                Response.Write("<br/>Stack Trace: " + ex.StackTrace);
             }
             catch (Exception ex)
             {
                 Response.Write("An error occurred while saving the order: " + ex.Message);
+                Response.Write("<br/>Stack Trace: " + ex.StackTrace);
+            }
+        }
+
+
+        protected void GetFirstName(string userId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
+                {
+                    Response.Write("UserId is not provided.");
+                    return;
+                }
+
+                int userIdInt;
+                if (!int.TryParse(userId, out userIdInt))
+                {
+                    Response.Write("Invalid userId");
+                    return;
+                }
+
+                using (Session session = new Session())
+                {
+                    XPCollection<User> userCollection = new XPCollection<User>(session, new BinaryOperator("Id", userIdInt));
+                    var user = userCollection.FirstOrDefault();
+
+                    if (user == null)
+                    {
+                        Response.Write("User not found");
+                        return;
+                    }
+
+                    // Store customer information in ViewState
+                    ViewState["FirstCustomerName"] = user.FirstName;
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log the detailed exception message
+                Response.Write("An error occurred: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Handle other potential exceptions
+                Response.Write("An unexpected error occurred: " + ex.Message);
             }
         }
 
@@ -351,7 +412,7 @@ namespace BookSaleFairProject
             Response.Redirect("AddNewBook.aspx");
         }
 
-
+        // oakdp mcoam lkcamd lkmclk 
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -430,7 +491,7 @@ namespace BookSaleFairProject
                 ImageUrl = string.IsNullOrEmpty(book.ImageName) ? null : $"/Books_Images/{book.ImageName}"
             }).ToList();
 
-            ViewState["DataSource"] = dataSource;
+            ViewState["CardsData"] = dataSource;
 
             ASPxCardView1.DataSource = dataSource;
             ASPxCardView1.DataBind();

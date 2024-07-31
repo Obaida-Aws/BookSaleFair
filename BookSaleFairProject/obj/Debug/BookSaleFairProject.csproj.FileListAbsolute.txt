@@ -56,3 +56,13 @@ C:\Users\dell\source\repos\BookSaleFair\BookSaleFairProject\obj\Debug\BookSaleFa
 C:\Users\dell\source\repos\BookSaleFair\BookSaleFairProject\obj\Debug\BookSale.05760E5A.Up2Date
 C:\Users\dell\source\repos\BookSaleFair\BookSaleFairProject\obj\Debug\BookSaleFairProject.dll
 C:\Users\dell\source\repos\BookSaleFair\BookSaleFairProject\obj\Debug\BookSaleFairProject.pdb
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\BCrypt.Net-Next.dll
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Buffers.dll
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Memory.dll
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Numerics.Vectors.dll
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\BCrypt.Net-Next.xml
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Buffers.xml
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Memory.xml
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Numerics.Vectors.xml
+C:\Users\Obaida\source\repos\BookSaleFairProject\BookSaleFairProject\bin\System.Runtime.CompilerServices.Unsafe.xml
