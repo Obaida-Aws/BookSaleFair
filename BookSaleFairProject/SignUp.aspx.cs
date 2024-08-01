@@ -59,46 +59,58 @@ namespace BookSaleFairProject
             }
             else
             {
-                using (Session session = XpoDefault.Session)
+                using (UnitOfWork uow = new UnitOfWork())
                 {
-                    if (session == null)
+                    try
                     {
-                        throw new Exception("Session is null. Data layer might not be initialized correctly.");
+                        // Perform operations using the UnitOfWork
+                        string firstName = txtFirstName.Text;
+                        string lastName = txtLastName.Text;
+                        string email = txtEmail.Text;
+                        string username = txtUsername.Text.Trim();
+                        string password = txtPassword.Text.Trim();
+                        string type = "user";
+                        string gender = genders.SelectedItem?.Text;
+
+                        // Hash the password
+                        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+                        User newUser = new User(uow)
+                        {
+                            FirstName = firstName,
+                            LastName = lastName,
+                            Type = type,
+                            Username = username,
+                            Password = hashedPassword,
+                            Email = email,
+                            Gender = gender,
+                        };
+
+                        uow.Save(newUser);
+                        uow.FlushChanges(); // Ensure that the newUser.Id is updated
+
+                        // Add the new user to the Customers table
+                        Customer newCustomer = new Customer(uow)
+                        {
+                            UserId = newUser.Id
+                        };
+
+                        uow.Save(newCustomer);
+
+                        // Commit the transaction
+                        uow.CommitChanges();
+
+                        Response.Redirect("Login.aspx");
                     }
-
-                    // Perform operations using the session
-                    string firstName = txtFirstName.Text;
-                    string lastName = txtLastName.Text;
-                    string email = txtEmail.Text;
-                    string username = txtUsername.Text.Trim();
-                    string password = txtPassword.Text.Trim();
-                    string type = "user";
-                    string gender = genders.SelectedItem?.Text;
-
-                    // Hash the password
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-
-                    User newUser = new User(session)
+                    catch (Exception ex)
                     {
-                        FirstName = firstName,
-                        LastName = lastName,
-                        Type = type,
-                        Username = username,
-                        Password = hashedPassword,
-                        Email = email,
-                        Gender = gender,
-                    };
-
-                    Customer newCustomer = new Customer(session)
-                    {
-                        UserId = newUser.Id,
-                    };
-
-                    session.Save(newUser);
-                    session.Save(newCustomer);
-
-                    Response.Redirect("Login.aspx");
-
+                        // Rollback the transaction in case of an error, if it is active
+                        if (uow.InTransaction)
+                        {
+                            uow.RollbackTransaction();
+                        }
+                        lblMessage.Text = "An error occurred: " + ex.Message;
+                    }
                 }
             }
         }
