@@ -162,12 +162,14 @@
 
         .card-image {
             margin-bottom: 10px;
+      
         }
 
             .card-image img {
                 width: 200px;
                 height: 200px;
                 object-fit: cover;
+          
             }
 
         .centered22 {
@@ -248,7 +250,7 @@
                 <dx:ASPxPanel ID="ASPxPanel4" runat="server" CssClass="panel-container">
                     <PanelCollection>
                         <dx:PanelContent>
-                            <dx:ASPxGridView ID="gridOrders" runat="server" AutoGenerateColumns="False" KeyFieldName="OrderId">
+                            <dx:ASPxGridView ID="gridOrders" runat="server" AutoGenerateColumns="False" KeyFieldName="OrderId"  >
                                 <Columns>
                                     <dx:GridViewDataTextColumn FieldName="BookId" Caption="Book Id" />
                                     <dx:GridViewDataTextColumn FieldName="Name" Caption="Title" />
@@ -266,7 +268,7 @@
 
                                     <dx:GridViewDataCheckColumn Caption="Actions">
                                         <DataItemTemplate>
-                                            <dx:ASPxButton runat="server" Text="Cancel" OnClick="btnCancel_Click" ClientInstanceName="btnAction" CssClass="plain-text-button" />
+                                            <dx:ASPxButton runat="server" Text="Cancel" OnClick="btnCancel_Click"  ClientInstanceName="btnAction" CssClass="plain-text-button" Visible="true" />
 
                                         </DataItemTemplate>
                                     </dx:GridViewDataCheckColumn>
@@ -286,8 +288,8 @@
                 <dx:ASPxLabel ID="ASPxLabel2" runat="server" Text="BookSaleFair" CssClass="label-book-sale-fair"></dx:ASPxLabel>
                 <dx:ASPxMenu ID="ASPxMenu1" runat="server" CssClass="navbar">
                     <Items>
-                        <dx:MenuItem Text="Home" NavigateUrl="#home" />
-                        <dx:MenuItem Text="Cart" NavigateUrl="#chart" />
+                        <dx:MenuItem Text="Services" NavigateUrl="#home" />
+                        <dx:MenuItem Text="About" NavigateUrl="#chart" />
                         <dx:MenuItem Text="Logout" NavigateUrl="Login.aspx" />
                     </Items>
                 </dx:ASPxMenu>
@@ -342,6 +344,7 @@
                         <dx:ASPxImage ID="imgBook" runat="server" ImageUrl='<%# Eval("ImageUrl") %>' CssClass="card-image" />
                     </div>
                 </DataItemTemplate>
+
             </dx:CardViewColumn>
             <dx:CardViewTextColumn FieldName="Title" Caption="Title" VisibleIndex="2" />
             <dx:CardViewTextColumn FieldName="Description" Caption="Description" VisibleIndex="3" />

@@ -14,10 +14,10 @@ namespace BookSaleFairProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+          //  if (!IsPostBack)
+          //  {
                 BindBooksGrid();
-            }
+          //  }
         }
 
         protected void btnAccept_Click(object sender, EventArgs e)
@@ -82,7 +82,8 @@ namespace BookSaleFairProject
             }
         }
 
-        protected void gridOrders_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridViewTableRowEventArgs e)
+        protected void gridOrders_HtmlRowPrepared
+            (object sender, DevExpress.Web.ASPxGridViewTableRowEventArgs e)
         {
             if (e.RowType != DevExpress.Web.GridViewRowType.Data)
                 return;

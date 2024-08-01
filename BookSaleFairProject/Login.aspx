@@ -42,6 +42,15 @@
             text-align: right;
             margin-top: 10px;
         }
+
+        .no-underline {
+            text-decoration: none;
+            color: gray;
+        }
+
+        .forgot-password-link {
+            text-decoration: none;
+            color: gray;
     </style>
 
     <dx:ASPxPanel ID="ASPxPanel1" runat="server" CssClass="centered main-panel">
@@ -67,21 +76,21 @@
                                 </ValidationSettings>
                             </dx:ASPxTextBox>
                             <div class="forgot-password">
-                                <asp:HyperLink ID="lnkForgotPassword" runat="server" NavigateUrl="./ForgetPassword/EnterEmail.aspx" Text="Forgot Password?" CssClass="forgot-password-link"></asp:HyperLink>
+                                <asp:HyperLink ID="lnkForgotPassword" runat="server" NavigateUrl="./ForgetPassword/EnterEmail.aspx" Text="Forgot Password" CssClass="forgot-password-link"></asp:HyperLink>
                             </div>
                         </dx:PanelContent>
                     </PanelCollection>
                 </dx:ASPxPanel>
                 <br />
                 <br />
-                <dx:ASPxButton ID="btnLogin" runat="server" Text="Login" Style="margin-right: 20px;" OnClick="btnLogin_Click" CommandArgument='<%# txtUsername.Text %>' CausesValidation="true">
+                <dx:ASPxButton ID="btnLogin" runat="server" Text="Login" Style="margin-right: 20px;" Width="120px" OnClick="btnLogin_Click" CommandArgument='<%# txtUsername.Text %>' CausesValidation="true">
                     <ClientSideEvents Click="function(s, e) {
         if (!ASPxClientEdit.ValidateGroup('validationGroup')) {
             e.processOnServer = false;
         }
     }" />
                 </dx:ASPxButton>
-                <asp:HyperLink ID="lnkSignUp" runat="server" NavigateUrl="SignUp.aspx" Text="Sign Up"></asp:HyperLink>
+                <asp:HyperLink ID="lnkSignUp" runat="server" NavigateUrl="SignUp.aspx" Text="Create New Account" CssClass="no-underline"></asp:HyperLink>
             </dx:PanelContent>
         </PanelCollection>
     </dx:ASPxPanel>

@@ -38,7 +38,7 @@ namespace BookSaleFairProject
                         ASPxButton4.Visible = true;
                         btnAdd.Visible = false;
 
-                        ;
+                        
 
 
 
@@ -65,6 +65,8 @@ namespace BookSaleFairProject
                 BindPopupGrid(Request.QueryString["userId"]);
            // }
         }
+
+       
 
 
 
@@ -118,7 +120,6 @@ namespace BookSaleFairProject
             {
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    // Create a new Order object
                     Order newOrder = new Order(uow)
                     {
                         CustomerId = customerId,
@@ -128,19 +129,14 @@ namespace BookSaleFairProject
                         Date = DateTime.Now
                     };
 
-                    // Save the new order
                     uow.Save(newOrder);
 
-                    // Commit the transaction
                     uow.CommitChanges();
 
-                    // Retrieve the ID of the newly inserted order
                     int newOrderId = newOrder.Id;
 
-                    // Store the OrderId in Session for later use
                     Session["createdOrderId"] = newOrderId;
 
-                    // Redirect to the same page to reflect the changes
                     Response.Redirect(Request.RawUrl);
                 }
             }
@@ -189,13 +185,10 @@ namespace BookSaleFairProject
 
             try
             {
-                // Ensure the session is properly initialized
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    // Log session state before the operation
                     Response.Write($"Session state before operation: {uow?.Connection?.State}");
 
-                    // Refine the criteria query
                     CriteriaOperator criteria = new BinaryOperator("Id", selectedProduct.ID);
                     XPCollection<Book> booksCollection = new XPCollection<Book>(uow, criteria);
                     bool bookExists = booksCollection.Count > 0;
@@ -206,10 +199,9 @@ namespace BookSaleFairProject
                         return;
                     }
 
-                    // Log session state after the query
+               
                     Response.Write($"Session state after query: {uow?.Connection?.State}");
 
-                    // Create a new orderList entry
                     orderList newOrderListEntry = new orderList(uow)
                     {
                         BookId = selectedProduct.ID,
@@ -217,17 +209,14 @@ namespace BookSaleFairProject
                         Quantity = 1
                     };
 
-                    // Log object state before saving
                     Response.Write($"OrderListEntry state: {newOrderListEntry.BookId}, {newOrderListEntry.OrderId}, {newOrderListEntry.Quantity}");
 
                     uow.Save(newOrderListEntry);
 
-                    // Log before committing the transaction
                     Response.Write($"Session state before committing transaction: {uow?.Connection?.State}");
 
                     uow.CommitChanges();
 
-                    // Log after committing the transaction
                     Response.Write($"Session state after committing transaction: {uow?.Connection?.State}");
 
                     Response.Redirect(Request.RawUrl);
@@ -281,12 +270,10 @@ namespace BookSaleFairProject
             }
             catch (InvalidOperationException ex)
             {
-                // Log the detailed exception message
                 Response.Write("An error occurred: " + ex.Message);
             }
             catch (Exception ex)
             {
-                // Handle other potential exceptions
                 Response.Write("An unexpected error occurred: " + ex.Message);
             }
         }
@@ -344,14 +331,15 @@ namespace BookSaleFairProject
                 var customerNames = dataSource.Select(p => p.CustomerName).Distinct().ToList();
                 ViewState["CustomerNames"] = customerNames;
 
-                // Store the first CustomerName in a separate ViewState
                 if (customerNames.Any())
                 {
                     ViewState["FirstCustomerName"] = customerNames.First();
                 }
 
 
-
+                // Store Status values in ViewState
+                var statuses = dataSource.Select(p => p.Status).Distinct().ToList();
+                ViewState["Statuses"] = statuses;
 
                 ViewState["DataSource"] = dataSource;
                 gridProducts.DataSource = dataSource;
@@ -394,7 +382,6 @@ namespace BookSaleFairProject
 
 
             }
-            //    ASPxPopupContent.Width = Unit.Pixel(800);
             ASPxPopupContent.ShowOnPageLoad = true;
         }
 
@@ -446,7 +433,7 @@ namespace BookSaleFairProject
         {
             int index = Convert.ToInt32((sender as ASPxButton).CommandArgument);
 
-            var dataSource = ViewState["DataSource"] as List<CardData>;
+            var dataSource = ViewState["CardsData"] as List<CardData>;
             int bookIdToDelete = dataSource[index].ID;
 
             Session session = XpoDefault.Session;
